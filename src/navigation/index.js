@@ -18,9 +18,15 @@ import { Center } from 'native-base';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-
+var fontsLoaded = true;
 
 const Navigation = () => {
+  
+  state = {
+    fontsLoaded: false,
+  };
+
+
   let [fontsLoaded] = useFonts({
     'Contrail One': require('../../assets/fonts/ContrailOne-Regular.ttf'),
   })
@@ -111,7 +117,7 @@ const HStack = ({navigation}) => {
           title: "  Home",
           headerShadowVisible:false,
           headerTitleStyle:{
-            fontFamily:'Contrail One',
+            fontFamily:fontsLoaded?'Contrail One':'Roboto',
             fontSize:48,
             
           },
