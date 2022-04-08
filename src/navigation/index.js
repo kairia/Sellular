@@ -27,12 +27,16 @@ const Navigation = () => {
   state = {
     fontsLoaded: false,
   };
-
+  
 
   let [fontsLoaded] = useFonts({
     'Contrail One': require('../../assets/fonts/ContrailOne-Regular.ttf'),
     'Alegreya Sans SC': require('../../assets/fonts/AlegreyaSansSC-Regular.ttf')
   })
+
+  if(!fontsLoaded) {
+    return null;
+  }
   return (
     <NavigationContainer>
       <MyDrawer/>
@@ -48,6 +52,7 @@ const MyDrawer = () => {
     
     drawerContent={props => <CustomDrawer{...props}/> }
     screenOptions={{
+      drawerType:'front',
       drawerActiveBackgroundColor:'rgba(255,255,255,0.1)',
       drawerActiveTintColor:'#fff',
       drawerInactiveTintColor:'rgba(255,255,255,0.6)',
@@ -55,10 +60,10 @@ const MyDrawer = () => {
       drawerLabelStyle:{
         fontSize:24,
         fontFamily:fontsLoaded?'Alegreya Sans SC':'Roboto',
-        paddingLeft:12,
+        paddingLeft:24,
       },
       drawerItemStyle:{
-        marginTop:5,
+        borderRadius:10,
       },
       drawerStyle: {
         borderTopLeftRadius:60,
@@ -101,8 +106,9 @@ const Tabs = () => {
       screenOptions={{
         tabBarStyle: 
           { position: 'absolute',
-            borderTopRightRadius:15,
-            borderTopLeftRadius:15,
+            justifyContent:'center',
+            borderTopRightRadius:25,
+            borderTopLeftRadius:25,
             height:'10%',
             backgroundColor:'#1D5F8F',
             flexDirection: 'row',
@@ -129,7 +135,7 @@ const Tabs = () => {
       />
       <Tab.Screen 
         name="WList" 
-        component={MessagePage} 
+        component={ComingSoon2} 
         options={{
           headerShown: false,
           title: "",
@@ -265,25 +271,7 @@ const ComingSoon2 = ({navigation}) => {
   );
 
 }
-const MessagePage =({navigation}) => {
 
-  return (
-    
-<View style = {stylesheet._Messages}>
-    <><View style={stylesheet._Heading}>
-        <Text style={stylesheet._Heading}>
-            Messages
-        </Text>
-    </View><View style={stylesheet._Nothing_inbox}>
-            <Text style={stylesheet._Nothing_inbox}>
-                Nothing inbox
-            </Text>
-        </View><Image style={stylesheet._Mail} source={{ uri: imageUrl_Mail }}>
-        </Image></>
- </View>
-    );
-
-}
 export default Navigation;
 
 const styles = StyleSheet.create({
@@ -303,81 +291,3 @@ const styles = StyleSheet.create({
   },
 });
 
-const stylesheet = StyleSheet.create({
-  _Messages: {
-  position: "relative",
-  flex: 1,
-  height: 926,
-  borderRadius: 0,
-  overflow: "hidden",
-  transform: [
-  {translateX: 0},
-  {translateY: 0},
-  {rotate: "0deg"},
-  ],
-  backgroundColor: "rgba(255, 255, 255, 1)",
-  left: 0,
-  top: 0,
-  },
-  _Heading: {
-  position: "absolute",
-  width: 209,
-  height: 53,
-  left: 37,
-  right: "auto",
-  transform: [
-  {translateX: 0},
-  {translateY: 90},
-  {rotate: "0deg"},
-  ],
-  fontFamily: "Roboto",
-  fontWeight: "400",
-  textDecorationLine: "none",
-  fontSize: 48,
-  color: "rgba(0, 0, 0, 1)",
-  textAlign: "left",
-  textAlignVertical: "top",
-  letterSpacing: 0,
-  },
-  _Nothing_inbox: {
-  position: "absolute",
-  width: "auto",
-  height: "auto",
-  left: 145,
-  right: "auto",
-  top: 445,
-  bottom: "auto",
-  transform: [
-  {translateX: 0},
-  {translateY: 0},
-  {rotate: "0deg"},
-  ],
-  fontFamily: "Roboto",
-  fontWeight: "700",
-  textDecorationLine: "none",
-  fontSize: 24,
-  color: "rgba(0, 0, 0, 0.30000001192092896)",
-  textAlign: "left",
-  textAlignVertical: "top",
-  letterSpacing: 0,
-  },
-  _Mail: {
-  position: "absolute",
-  width: 69,
-  height: 69,
-  borderRadius: 0,
-  opacity: 1,
-  left: 179,
-  right: "auto",
-  top: 364,
-  bottom: "auto",
-  transform: [
-  {translateX: 0},
-  {translateY: 0},
-  {rotate: "0deg"},
-  ],
-  backgroundColor: "rgba(0,0,0,0)",
-  },
-  });
-
-  imageUrl_Mail='../images/Mail'

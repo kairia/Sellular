@@ -4,7 +4,7 @@ import {NativeBaseProvider,Box, Text,Heading,HStack,Pressable, Image} from "nati
 import image from "../images/BG_Nightsky.jpg";
 
 var ad=[
-  require('../images/img_book_fashinopolis.png'),
+  require('../images/BluePhone.jpg'),
   require('../images/img_book_chanel.png'),
   require('../images/img_book_calligraphy.png'),
   require('../images/img_book_ysl.png'),
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     borderWidth:3,
     borderColor:"#FFC658",
     borderRadius:28,
-    marginVertical:15,
+    marginVertical:25,
     marginLeft: 20,
     padding:20,
     justifyContent:"center"
