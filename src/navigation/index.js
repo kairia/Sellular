@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
+import { ImageBackground, View, Text, Image, ScrollView, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -12,12 +13,13 @@ import HTabs from '../components/HTabs';
 
 import { useFonts } from 'expo-font';
 
-
+import CustomDrawer from '../components/CustonDrawer';
 import { shadowOffset } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 import { Center } from 'native-base';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 var fontsLoaded = true;
 
 const Navigation = () => {
@@ -29,12 +31,67 @@ const Navigation = () => {
 
   let [fontsLoaded] = useFonts({
     'Contrail One': require('../../assets/fonts/ContrailOne-Regular.ttf'),
+    'Alegreya Sans SC': require('../../assets/fonts/AlegreyaSansSC-Regular.ttf')
   })
   return (
     <NavigationContainer>
-      <Tabs/>
+      <MyDrawer/>
     </NavigationContainer>
   );
+}
+
+const MyDrawer = () => {
+  {drawerPosition: "right"}
+  return (
+    
+    <Drawer.Navigator 
+    
+    drawerContent={props => <CustomDrawer{...props}/> }
+    screenOptions={{
+      drawerActiveBackgroundColor:'rgba(255,255,255,0.1)',
+      drawerActiveTintColor:'#fff',
+      drawerInactiveTintColor:'rgba(255,255,255,0.6)',
+      drawerPosition: "right",
+      drawerLabelStyle:{
+        fontSize:24,
+        fontFamily:fontsLoaded?'Alegreya Sans SC':'Roboto',
+        paddingLeft:12,
+      },
+      drawerItemStyle:{
+        marginTop:5,
+      },
+      drawerStyle: {
+        borderTopLeftRadius:60,
+        marginTop:"15%",
+        backgroundColor: '#000',
+        width: "55%",
+      },
+    }} 
+      initialRouteName="HomeStack">
+      <Drawer.Screen 
+        name="MainPage" 
+        component={ComingSoon} 
+        options={{
+          headerShown: false,
+          title: "Main Page",
+       //   drawerIcon: ({ color }) => (
+       //     <MaterialCommunityIcons name="home" color={color} size={26} />
+       //   ),
+        }}
+      />
+      <Drawer.Screen 
+      name="My Account" 
+      component={Settings} 
+      options={{
+        headerShown: false,
+        title: "My Account",
+     //   drawerIcon: ({ color }) => (
+     //     <MaterialCommunityIcons name="home" color={color} size={26} />
+     //   ),
+      }}
+    />
+    </Drawer.Navigator>
+  );  
 }
 
 const Tabs = () => {
@@ -132,7 +189,7 @@ const HStack = ({navigation}) => {
             <MaterialCommunityIcons
               name={'menu'}
               size={24}
-              onPress={() => alert("Search?")}
+              onPress={() => navigation.openDrawer()}
               style={{ marginRight: 12 }}
             />
           ),
@@ -180,8 +237,14 @@ const HStack = ({navigation}) => {
 }
 const ComingSoon = ({navigation}) => {
   return (
-  <View style={styles.container}>
-    <Text style={styles.Text2}>Wishlist</Text>
+    <Tabs/>
+  );
+
+}
+const Settings = ({navigation}) => {
+  return (
+    <View style={styles.container}>
+    <Text style={styles.Text2}>Settings</Text>
     <Text style={styles.Text}>
     
       coming soon...

@@ -5,10 +5,8 @@ import AlbumList from "../components/AlbumList";
 import albumData from "../json/albums.json";
 
 const AlbumScreen = ({ navigation }) => {
-  const [layout, setLayout] = useState({
-    width: 0,
-    height: 0,
-  });
+
+  
   return (
     <Box backgroundColor={"#fff"} >
       <AlbumList 

@@ -36,7 +36,7 @@ const Albumlist = (navigation) => {
         />
       </ImageBackground>
         
-      <Text style={{color:"#fff"}}>TEST</Text>
+      <Text style={{color:"#000"}}>TEST</Text>
     </>
   );
   const renderItem = ({ item, section }) => {
