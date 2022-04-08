@@ -43,7 +43,7 @@ const Tabs = () => {
       initialRouteName="HomeStack"
       screenOptions={{
         tabBarStyle: 
-          { //position: 'absolute',
+          { position: 'absolute',
             borderTopRightRadius:15,
             borderTopLeftRadius:15,
             height:'10%',
@@ -114,7 +114,7 @@ const HStack = ({navigation}) => {
         name="Home"
         component={AlbumScreen}
         options={{
-          title: "  Home",
+          title: " Home",
           headerShadowVisible:false,
           headerTitleStyle:{
             fontFamily:fontsLoaded?'Contrail One':'Roboto',
@@ -205,6 +205,7 @@ const ComingSoon2 = ({navigation}) => {
 const MessagePage =({navigation}) => {
 
   return (
+    
 <View style = {stylesheet._Messages}>
     <><View style={stylesheet._Heading}>
         <Text style={stylesheet._Heading}>

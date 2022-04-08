@@ -42,7 +42,7 @@
          "image": "3",
          "price": 46.99,
          "descriptions": "A spectacular visual journey through 40 years of haute couture from one of the best-known and most trend-setting brands in fashion."
-
+  
          },
          {
             "title": "The Book of Signs",
@@ -51,7 +51,7 @@
             "image": "4",
             "price": 37.31,
             "descriptions": "A spectacular visual journey through 40 years of haute couture from one of the best-known and most trend-setting brands in fashion."
-
+  
          },
          {
             "title": "Stitched Up",
@@ -62,5 +62,6 @@
             "descriptions": "A spectacular visual journey through 40 years of haute couture from one of the best-known and most trend-setting brands in fashion."
          }
    ]}
+  
    
 ]

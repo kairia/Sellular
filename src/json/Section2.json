@@ -1,0 +1,33 @@
+[
+    {
+    "title": "Explore",
+    "horizontal": true,
+    "data": [
+       {
+       "title": "Yves Saint Laurent",
+       "artist": "Suzy Menkes ",
+       "url": "https://www.figma.com/file/p3pwNKq797lg9fBUOy4W2H/app-course---book-app-(android)?node-id=0%3A1",
+       "image": "3",
+       "price": 46.99,
+       "descriptions": "A spectacular visual journey through 40 years of haute couture from one of the best-known and most trend-setting brands in fashion."
+
+       },
+       {
+          "title": "The Book of Signs",
+          "artist": "Rudolf Koch ",
+          "url": "https://www.figma.com/file/p3pwNKq797lg9fBUOy4W2H/app-course---book-app-(android)?node-id=0%3A1",
+          "image": "4",
+          "price": 37.31,
+          "descriptions": "A spectacular visual journey through 40 years of haute couture from one of the best-known and most trend-setting brands in fashion."
+
+       },
+       {
+          "title": "Stitched Up",
+          "artist": "Tansy E. Hoskins",
+          "url": "https://www.figma.com/file/p3pwNKq797lg9fBUOy4W2H/app-course---book-app-(android)?node-id=0%3A1",
+          "image": "5",
+          "price": 78.82,
+          "descriptions": "A spectacular visual journey through 40 years of haute couture from one of the best-known and most trend-setting brands in fashion."
+       }
+ ]}
+]

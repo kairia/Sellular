@@ -1,6 +1,7 @@
 import React from "react";
-import { StyleSheet,  View} from "react-native";
+import { ImageBackground,StyleSheet,  View} from "react-native";
 import {NativeBaseProvider,Box, Text,Heading,HStack,Pressable, Image} from "native-base";
+import image from "../images/BG_Nightsky.jpg";
 
 var ad=[
   require('../images/img_book_fashinopolis.png'),
@@ -19,7 +20,7 @@ const BooksDetail =({ album, navigation}) => {
   
    return (
     // <NativeBaseProvider>
-      <Box bg="white">
+      <Box bg="white" style={styles.cellStyle}> 
            <Pressable
               onPress={() => {console.log(album);navigation.navigation.navigate('Detail',album)}}
             >
@@ -45,10 +46,19 @@ const BooksDetail =({ album, navigation}) => {
   )};
 
 const styles = StyleSheet.create({
+  cellStyle:{
+    borderWidth:3,
+    borderColor:"#FFC658",
+    borderRadius:28,
+    marginVertical:15,
+    marginLeft: 20,
+    padding:20,
+    justifyContent:"center"
+  },
   headerContainerStyle: {
     flexDirection: "column",
     justifyContent: "space-around",
-    paddingLeft: 12,
+    paddingLeft: 0,
     width: 130,
   },
   headerTitleStyle: {
@@ -62,8 +72,9 @@ const styles = StyleSheet.create({
   },
   imageStyle: {
     height: 200,
-    width: 140,
-    marginRight:16,
+    width: 200,
+    marginRight:0,
+    borderRadius:28,
   }
 });
 
