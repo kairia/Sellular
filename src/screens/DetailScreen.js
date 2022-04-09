@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linking,StyleSheet, View,Platform,ImageBackground } from 'react-native';
+import { Linking , StyleSheet, View, Platform , ImageBackground ,TouchableOpacity } from 'react-native';
 import { Center, ScrollView, Box, AspectRatio, Text, Heading, Image, Button, HStack } from "native-base";
 import  {LinearGradient}  from 'expo-linear-gradient';
 
@@ -27,7 +27,7 @@ const DetailScreen = ({ route }) => {
   } = route.params;
 
   var a=Number(star[0])+Number(star[1])+Number(star[2])+Number(star[3])+Number(star[4]);
-  var b="Purchase"+price;
+  var b="Purchase";
   //colors={['#fff','rgba(255,255,255,0.5)','rgba(255,255,255,0)']}
 
   return (
@@ -50,25 +50,64 @@ const DetailScreen = ({ route }) => {
         </Box>
         
         <Box bg="#fff" width={320} mx="auto" mt="28px">
-          <Center>
-            <Heading fontSize="24px" color='#000000'>{title}</Heading>
-            <Heading my="8px" fontSize="14px" color='#666666'> {artist}</Heading>
+          <Box>
+            <Text textAlign="left" fontWeight={700} fontSize="24px" color='#000000'>{title}</Text>
+            <Box 
+            height="12%" 
+            width="40%" 
+            bg="#859AAE" 
+            style={{borderRadius:5}}
+            >
+
+              <Text textAlign="left" fontSize="14px" color='#fff' my="1%" ml="5%"> {artist}</Text>
+              
+            </Box>
             {star!="null"? <HStack mb="16px" alignItems="center">
                   
                  
                   <Text>{a}.0/5.0 </Text>
               </HStack>:null}
-            <Text textAlign="center">{descriptions}</Text>
-            <Button 
-              mt="28px"
-              width="190px"
-              onPress={() => alert("In your cart")}
-              fontSize="14px"
+            <Text textAlign="left">{descriptions}</Text>
+            <Text textAlign="right" fontSize="20px">{"$"+price}</Text>
+
+             
+             {Platform.OS == 'ios' ?
+             
+             <Button 
+             fontSize="14px" 
+             color={"#fff"} 
+             onPress={() => alert("In your cart")} 
+             width="50%" 
+             height="18%"
+             style={{marginLeft:"50%",marginTop:"5%",borderRadius:10}}>{b}</Button>
+
+             :
+             
+             <TouchableOpacity 
+             onPress={() => alert("In your cart")} style={{marginLeft:"50%",marginTop:"5%"}}>
+             
+             <LinearGradient 
+              width="100%"
+              colors={['#3DB1D5','#3EC4D5','#3ED5D5']} 
+              style={{borderRadius:10}}
               bg="#6200EE"
             >
-           {b}
-            </Button>  
-          </Center>
+              <Center><Text fontWeight={700} mx="20%" my="8%" fontSize="14px" color={"#fff"}>{b}</Text></Center>
+              
+              
+            </LinearGradient> 
+
+
+             </TouchableOpacity>
+              
+             
+            
+            }
+
+            
+              
+             
+          </Box>
         </Box>
        
             

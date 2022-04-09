@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { ImageBackground, Text, FlatList, SectionList, StyleSheet } from "react-native";
+import { ImageBackground, Text, FlatList, SectionList, StyleSheet, View } from "react-native";
 import {NativeBaseProvider,Heading} from 'native-base';
 import BooksDetail from "./BooksDetail";
 import sections from "../json/album_section.json";
 
-import image from "../images/BG_Nightsky.jpg";
+import MaskedView from '@react-native-masked-view/masked-view';
+import image from "../images/BG_Daysky.jpg";
 import { useFonts } from 'expo-font';
 var fontsLoaded = true;
 
@@ -25,7 +26,22 @@ const Albumlist = (navigation) => {
     
     <>
       <Text style={styles.sectionHeader} >{section.title}</Text>
-      <ImageBackground source={image} style={{flex:1,justifyContent:"center",  resizeMode: 'cover'}}>
+      <MaskedView 
+      style={{ flex: 1, flexDirection: 'row', height: '100%'}}
+      maskElement={
+        <View 
+        width="100%" 
+        height="100%" 
+        style={{
+          backgroundColor: '#fff',
+          borderTopLeftRadius:50,
+          borderBottomRightRadius:50
+          }}>
+          
+        </View>
+      }
+      >
+        <ImageBackground source={image} imageStyle={{ borderTopLeftRadius:50, borderBottomRightRadius:50}} style={{flex:1,justifyContent:"center",  resizeMode: 'cover'}}>
         <FlatList
           horizontal={section.horizontal}
           data={section.data}
@@ -35,6 +51,9 @@ const Albumlist = (navigation) => {
           keyExtractor={ item => item.title }
         />
       </ImageBackground>
+
+      </MaskedView>
+      
         
       <Text style={{color:"#000"}}>TEST</Text>
     </>
@@ -64,6 +83,7 @@ const styles = StyleSheet.create({
     // fontWeight: '600',
     fontSize: 24,
     fontFamily:fontsLoaded?'Alegreya Sans SC':'Roboto',
+    fontWeight:"600",
     paddingBottom: 20,
     paddingLeft:28,
     // paddingLeft: 20,

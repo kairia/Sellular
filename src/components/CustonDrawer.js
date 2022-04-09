@@ -9,7 +9,7 @@ const CustomDrawer = (props) => {
 
     return(
        
-        <ImageBackground source={image}imageStyle={{ borderTopLeftRadius:50}} style={{flex:1,justifyContent:"center",  resizeMode: 'cover'}}>
+        <ImageBackground source={image} imageStyle={{ borderTopLeftRadius:50}} style={{flex:1,justifyContent:"center",  resizeMode: 'cover'}}>
            <View style={{padding:'5%'}}></View>
             <DrawerContentScrollView {...props}>
                 <DrawerItemList {...props}/>

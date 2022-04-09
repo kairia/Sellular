@@ -1,5 +1,6 @@
 import React from 'react';
-import { ImageBackground, View, Text, Image, ScrollView, StyleSheet } from 'react-native';
+import { ImageBackground,Platform, View, Text, Image, ScrollView, StyleSheet, } from 'react-native';
+import { Box } from "native-base";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -172,47 +173,44 @@ const Tabs = () => {
 
 const HStack = ({navigation}) => {
   return (
-    <Stack.Navigator>
+    Platform.OS == 'ios' ?
+    <>
+      <Stack.Navigator>
       <Stack.Screen
         name="Home"
         component={AlbumScreen}
         options={{
-          alignItems:'center',
-          title: " Home",
-          headerShadowVisible:false,
-          headerTitleStyle:{
-            fontFamily:fontsLoaded?'Contrail One':'Roboto',
-            fontSize:48,
-            
-          },
-          headerStyle:{
-            elevation: 0, // remove shadow on Android
-            shadowOpacity: 0, // remove shadow on iOS
-            backgroundColor:"#fff",
-            shadowOffset:0,
-            alignItems:'left'
-          },
+          //alignItems:'center',
+          title:" " ,
+          headerShadowVisible: false,
+          headerShown:false,
           headerRight: () => (
             <MaterialCommunityIcons
               name={'menu'}
               size={24}
               onPress={() => navigation.openDrawer()}
-              style={{ marginRight: 12 }}
-            />
+              style={{ marginRight: 12 }} />
           ),
-          
-        }}
-      />
+          headerLeft: () => (
+              <Text
+                style={{
+                  fontFamily: fontsLoaded ? 'Contrail One' : 'Roboto',
+                  fontSize: 48,
+                  bottom:"20%"
+                }}>Home</Text> 
+
+          ),
+        }} />
       <Stack.Screen
         name="Detail"
         component={DetailScreen}
         options={({ route }) => ({
           title: "",
-          headerShadowVisible:false,
-          headerTransparent:true,
+          headerShadowVisible: false,
+          headerTransparent: true,
           headerStyle: {
             backgroundColor: 'rgba(255,255,255,0)',
-            position:'absolute',
+            position: 'absolute',
           },
           headerTintColor: '#000',
           headerTitleStyle: {
@@ -224,24 +222,86 @@ const HStack = ({navigation}) => {
               name={'chevron-left'}
               color={"#fff"}
               size={40}
-              onPress={() =>navigation.goBack(null)}
-              style={{ marginLeft: 4 }}
-            />
+              onPress={() => navigation.goBack(null)}
+              style={{ marginLeft: 4 }} />
           ),
           headerRight: () => (
-         <MaterialCommunityIcons
+            <MaterialCommunityIcons
+              name={'bookmark'}
+              color={'#6200EE'}
+              size={30}
+              onPress={() => alert("bookmark!")}
+              style={{ marginLeft: 8 }} />
+
+          ),
+          backgroundColor: '#fff',
+        })} />
+    </Stack.Navigator></>:
+    <Stack.Navigator>
+    <Stack.Screen
+      name="Home"
+      component={AlbumScreen}
+      options={{
+        //alignItems:'center',
+        title: " Home",
+        headerShadowVisible: false,
+        headerTitleStyle: {
+          fontFamily: fontsLoaded ? 'Contrail One' : 'Roboto',
+          fontSize: 48,
+        },
+        headerStyle: {
+          elevation: 0,
+          shadowOpacity: 0,
+          backgroundColor: "#fff",
+          shadowOffset: 0,
+          marginTop: '40%',
+          height: 100,
+        },
+        headerRight: () => (
+          <MaterialCommunityIcons
+            name={'menu'}
+            size={24}
+            onPress={() => navigation.openDrawer()}
+            style={{ marginRight: 12 }} />
+        ),
+      }} />
+    <Stack.Screen
+      name="Detail"
+      component={DetailScreen}
+      options={({ route }) => ({
+        title: "",
+        headerShadowVisible: false,
+        headerTransparent: true,
+        headerStyle: {
+          backgroundColor: 'rgba(255,255,255,0)',
+          position: 'absolute',
+        },
+        headerTintColor: '#000',
+        headerTitleStyle: {
+          fontWeight: '400',
+          fontSize: 20
+        },
+        headerLeft: () => (
+          <MaterialCommunityIcons
+            name={'chevron-left'}
+            color={"#fff"}
+            size={40}
+            onPress={() => navigation.goBack(null)}
+            style={{ marginLeft: 4 }} />
+        ),
+        headerRight: () => (
+          <MaterialCommunityIcons
             name={'bookmark'}
             color={'#6200EE'}
             size={30}
-            onPress={() =>alert("bookmark!")}
-            style={{ marginLeft: 8 }}
-          />
-            
-          ),
-          backgroundColor:'#fff',
-        })}
-      />
-    </Stack.Navigator>
+            onPress={() => alert("bookmark!")}
+            style={{ marginLeft: 8 }} />
+
+        ),
+        backgroundColor: '#fff',
+      })} />
+  </Stack.Navigator>
+
   );
 }
 const ComingSoon = ({navigation}) => {
