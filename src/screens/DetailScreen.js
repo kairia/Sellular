@@ -1,9 +1,10 @@
 import React from 'react';
-import { Linking,StyleSheet } from 'react-native';
+import { Linking,StyleSheet, View,Platform,ImageBackground } from 'react-native';
 import { Center, ScrollView, Box, AspectRatio, Text, Heading, Image, Button, HStack } from "native-base";
+import  {LinearGradient}  from 'expo-linear-gradient';
 
 var ad=[
-  require('../images/img_book_fashinopolis.png'),
+  require('../images/BluePhone.jpg'),
   require('../images/img_book_chanel.png'),
   require('../images/img_book_calligraphy.png'),
   require('../images/img_book_ysl.png'),
@@ -24,16 +25,30 @@ const DetailScreen = ({ route }) => {
     image,
     descriptions
   } = route.params;
+
   var a=Number(star[0])+Number(star[1])+Number(star[2])+Number(star[3])+Number(star[4]);
-  var b="Buy Now for $"+price;
+  var b="Purchase"+price;
+  //colors={['#fff','rgba(255,255,255,0.5)','rgba(255,255,255,0)']}
+
   return (
-    <Box bg="white" height={640} > 
-        <Box width={210} height={300} mx="auto" mt="8px">
-          <Image
+    <Box bg="white" height={"100%"} > 
+        <View bg="white" width={"80%"} height={"5%"} style={{borderBottomLeftRadius:20,borderBottomRightRadius:20}}></View>
+        <Box width={"100%"} style={{aspectRatio:1}} >
+          <ImageBackground
             source={ad[image]}
             alt='bookImage'
-          />
+            style={{flex:1,justifyContent:"center",  resizeMode: 'cover'}}
+          >
+          <LinearGradient 
+          colors={['rgba(255,255,255,0)','rgba(255,255,255,0)','rgba(255,255,255,1)']} 
+          locations={[0.0,0.3,1]}
+          width={"100%"} 
+          height={"100%"} 
+          >
+          </LinearGradient>
+          </ImageBackground>
         </Box>
+        
         <Box bg="#fff" width={320} mx="auto" mt="28px">
           <Center>
             <Heading fontSize="24px" color='#000000'>{title}</Heading>
@@ -47,7 +62,7 @@ const DetailScreen = ({ route }) => {
             <Button 
               mt="28px"
               width="190px"
-              onPress={() => Linking.openURL(url)}
+              onPress={() => alert("In your cart")}
               fontSize="14px"
               bg="#6200EE"
             >

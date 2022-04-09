@@ -177,6 +177,7 @@ const HStack = ({navigation}) => {
         name="Home"
         component={AlbumScreen}
         options={{
+          alignItems:'center',
           title: " Home",
           headerShadowVisible:false,
           headerTitleStyle:{
@@ -189,7 +190,7 @@ const HStack = ({navigation}) => {
             shadowOpacity: 0, // remove shadow on iOS
             backgroundColor:"#fff",
             shadowOffset:0,
-          
+            alignItems:'left'
           },
           headerRight: () => (
             <MaterialCommunityIcons
@@ -208,9 +209,10 @@ const HStack = ({navigation}) => {
         options={({ route }) => ({
           title: "",
           headerShadowVisible:false,
+          headerTransparent:true,
           headerStyle: {
-            backgroundColor: '#fff',
-       
+            backgroundColor: 'rgba(255,255,255,0)',
+            position:'absolute',
           },
           headerTintColor: '#000',
           headerTitleStyle: {
@@ -220,9 +222,10 @@ const HStack = ({navigation}) => {
           headerLeft: () => (
             <MaterialCommunityIcons
               name={'chevron-left'}
-              size={30}
+              color={"#fff"}
+              size={40}
               onPress={() =>navigation.goBack(null)}
-              style={{ marginLeft: 8 }}
+              style={{ marginLeft: 4 }}
             />
           ),
           headerRight: () => (
