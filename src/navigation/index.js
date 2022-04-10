@@ -12,6 +12,7 @@ import AlbumScreen from '../screens/AlbumScreen';
 import DetailScreen from '../screens/DetailScreen';
 import MessageScreen from '../screens/Messages';
 import NotificationsScreen from '../screens/Notifications';
+import SearchScreen from '../screens/Search';
 import HTabs from '../components/HTabs';
 
 import { useFonts } from 'expo-font';
@@ -139,7 +140,7 @@ const Tabs = () => {
       />
       <Tab.Screen 
         name="WList" 
-        component={ComingSoon2} 
+        component={SearchScreen} 
         options={{
           headerShown: false,
           title: "",
@@ -231,11 +232,11 @@ const HStack = ({navigation}) => {
           ),
           headerRight: () => (
             <MaterialCommunityIcons
-              name={'bookmark'}
-              color={'#6200EE'}
-              size={30}
-              onPress={() => alert("bookmark!")}
-              style={{ marginLeft: 8 }} />
+              name={'menu'}
+              color={'#fff'}
+              size={24}
+              onPress={() => navigation.openDrawer()}
+              style={{ marginLeft: 16 }} />
 
           ),
           backgroundColor: '#fff',
@@ -292,15 +293,15 @@ const HStack = ({navigation}) => {
             color={"#fff"}
             size={40}
             onPress={() => navigation.goBack(null)}
-            style={{ marginLeft: 4 }} />
+            style={{ marginLeft: 0}} />
         ),
         headerRight: () => (
           <MaterialCommunityIcons
-            name={'bookmark'}
-            color={'#6200EE'}
-            size={30}
-            onPress={() => alert("bookmark!")}
-            style={{ marginLeft: 8 }} />
+            name={'menu'}
+            color={'#fff'}
+            size={24}
+            onPress={() => navigation.openDrawer()}
+            style={{ marginLeft: 16 }} />
 
         ),
         backgroundColor: '#fff',

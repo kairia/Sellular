@@ -55,8 +55,9 @@ const Albumlist = (navigation) => {
 
       </MaskedView>
       
-        
+      <Box style={{flexDirection:"row"}} ><Text style={styles.sectionHeader} >Explore</Text><Text style={{marginLeft:"60%",alignSelf: "center"}} ></Text></Box>  
       <Text style={{color:"#000"}}>TEST</Text>
+      
     </>
   );
   const renderItem = ({ item, section }) => {

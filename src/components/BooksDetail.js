@@ -40,8 +40,8 @@ const BooksDetail =({ album, navigation}) => {
                 <Box  style={{flex:1,flexDirection:"row"}}>   
                   <Image source={image} alt="xx" style={{height: 48,width: 48,borderRadius:50,alignSelf:"center"}}/>  
                   <Box style={{alignSelf:"center"}}>   
-                  <Heading style={styles.headerTitleStyle}>{album.title}</Heading>
-                  <Text style={styles.headerContentStyle} color="black:alpha.50" >{album.artist}</Text>
+                  <Heading style={styles.headerTitleStyle}>{album.owner}</Heading>
+                  <Text style={styles.headerContentStyle} color="black:alpha.50" >@{album.ownerID}</Text>
                   </Box>
                 </Box>
                 
@@ -53,7 +53,7 @@ const BooksDetail =({ album, navigation}) => {
 
 const styles = StyleSheet.create({
   cellStyle:{
-    borderWidth:3,
+    borderWidth:2,
     borderColor:"#DC90FF",
     borderRadius:28,
     marginVertical:25,
@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
   },
   headerContentStyle: {
     fontSize: 12,
-    marginLeft:10
-    // fontWeight: '300',
+    marginLeft:10,
+    fontWeight: '700',
     // color:"#000",
   },
   imageStyle: {

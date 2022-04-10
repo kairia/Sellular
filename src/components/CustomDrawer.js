@@ -32,10 +32,10 @@ const CustomDrawer = (props) => {
        
         <ImageBackground source={image} imageStyle={{ borderTopLeftRadius:50}} style={{flex:1,justifyContent:"center",  resizeMode: 'cover'}}>
            <View style={{borderBottomWidth:1,borderRightWidth:1,borderColor:"#A89CF0",backgroundColor:"#fff",height:"13%",width:"100%",borderTopLeftRadius:50,borderBottomRightRadius:50,margin:0}}>
-               <View style={{flexDirection:"row",borderTopWidth:2,borderLeftWidth:2,borderColor:"#C3C9FF",position:"absolute",bottom:0,right:0,backgroundColor:"#E3E9FF",height:"90%",width:"95%",borderTopLeftRadius:40,borderBottomRightRadius:50,margin:0}}>
+               <View style={{flexDirection:"row",borderTopWidth:0,borderLeftWidth:0,borderColor:"#C3C9FF",position:"absolute",bottom:0,right:0,backgroundColor:"#E3E9FF",height:"90%",width:"95%",borderTopLeftRadius:40,borderBottomRightRadius:50,margin:0}}>
                  <View style={{borderWidth:1.5,borderColor:"#7060D2",alignSelf:"center",backgroundColor:"#E5E0FF",height:64,width:64,borderRadius:50,opacity:0.5,marginLeft:"5%"}}></View>
                  <View style={{margin:"5%",aspectRatio:2,alignSelf:"center",height:64,flexDirection:"row"}}>
-                   <Text style={{paddingLeft:"10%",fontSize:20,alignSelf:"center",fontFamily:'Alegreya Sans SC'}}>Kai</Text>
+                   <Text style={{paddingLeft:"10%",fontSize:24,alignSelf:"center",fontFamily:'Alegreya Sans SC'}}>User</Text>
                  </View>
                </View>
            </View>
