@@ -9,7 +9,7 @@ import { useFonts } from 'expo-font';
 
 var fontsLoaded = true;
 
-const MessageScreen = ({ navigation }) => {
+const NotificationsScreen = ({ navigation }) => {
 
 
     state = {
@@ -38,7 +38,7 @@ return(
         fontSize: 48,
         top: "40%",
         left: "5%"
-      }}>Messages</Text>
+      }}>Notifications</Text>
     <MaterialCommunityIcons
       name={'menu'}
       size={24}
@@ -52,7 +52,7 @@ return(
       fontSize: 48,
       top: "50%",
       left: "7%"
-    }}>Messages</Text>
+    }}>Notifications</Text>
   <MaterialCommunityIcons
     name={'menu'}
     size={24}
@@ -62,4 +62,4 @@ return(
 );
 }
 
-export default MessageScreen
+export default NotificationsScreen

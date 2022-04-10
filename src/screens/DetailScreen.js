@@ -51,15 +51,15 @@ const DetailScreen = ({ route }) => {
         
         <Box bg="#fff" width={320} mx="auto" mt="28px">
           <Box>
-            <Text textAlign="left" fontWeight={700} fontSize="24px" color='#000000'>{title}</Text>
+            <Text textAlign="left" fontWeight={700} fontSize="24px" color='#DC90FF'>{title}</Text>
             <Box 
             height="12%" 
             width="40%" 
             bg="#859AAE" 
-            style={{borderRadius:5}}
+            style={{borderRadius:5,flexDirection:"row"}}
             >
 
-              <Text textAlign="left" fontSize="14px" color='#fff' my="1%" ml="5%"> {artist}</Text>
+              <Text textAlign="left" fontSize="14px" color='#fff' ml="5%" style={{alignSelf: "center"}}> {artist}</Text>
               
             </Box>
             {star!="null"? <HStack mb="16px" alignItems="center">

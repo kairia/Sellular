@@ -36,9 +36,15 @@ const BooksDetail =({ album, navigation}) => {
               <Box>
                 {album.star!="null"? <HStack mt="16px">
                   
-                </HStack>:null}        
-                <Heading style={styles.headerTitleStyle}>{album.title}</Heading>
-                <Text style={styles.headerContentStyle} color="black:alpha.50" >{album.artist}</Text>
+                </HStack>:null}
+                <Box  style={{flex:1,flexDirection:"row"}}>   
+                  <Image source={image} alt="xx" style={{height: 48,width: 48,borderRadius:50,alignSelf:"center"}}/>  
+                  <Box style={{alignSelf:"center"}}>   
+                  <Heading style={styles.headerTitleStyle}>{album.title}</Heading>
+                  <Text style={styles.headerContentStyle} color="black:alpha.50" >{album.artist}</Text>
+                  </Box>
+                </Box>
+                
               </Box>    
             </Pressable> 
       </Box>
@@ -48,7 +54,7 @@ const BooksDetail =({ album, navigation}) => {
 const styles = StyleSheet.create({
   cellStyle:{
     borderWidth:3,
-    borderColor:"#FFC658",
+    borderColor:"#DC90FF",
     borderRadius:28,
     marginVertical:25,
     marginLeft: 20,
@@ -63,10 +69,12 @@ const styles = StyleSheet.create({
   },
   headerTitleStyle: {
     fontSize: 16,
+    marginLeft:10
     // fontWeight: 'bold',
   },
   headerContentStyle: {
     fontSize: 12,
+    marginLeft:10
     // fontWeight: '300',
     // color:"#000",
   },
@@ -75,6 +83,7 @@ const styles = StyleSheet.create({
     width: 200,
     marginRight:0,
     borderRadius:28,
+    marginBottom:10
   }
 });
 

@@ -10,11 +10,13 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import AlbumScreen from '../screens/AlbumScreen';
 import DetailScreen from '../screens/DetailScreen';
+import MessageScreen from '../screens/Messages';
+import NotificationsScreen from '../screens/Notifications';
 import HTabs from '../components/HTabs';
 
 import { useFonts } from 'expo-font';
 
-import CustomDrawer from '../components/CustonDrawer';
+import CustomDrawer from '../components/CustomDrawer';
 import { shadowOffset } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 import { Center } from 'native-base';
 
@@ -54,14 +56,14 @@ const MyDrawer = () => {
     drawerContent={props => <CustomDrawer{...props}/> }
     screenOptions={{
       drawerType:'front',
-      drawerActiveBackgroundColor:'rgba(255,255,255,0.1)',
-      drawerActiveTintColor:'#fff',
-      drawerInactiveTintColor:'rgba(255,255,255,0.6)',
+      drawerActiveBackgroundColor:'rgba(255,255,255,0.4)',
+      drawerActiveTintColor:'#121212',
+      drawerInactiveTintColor:'rgba(0,0,0,0.3)',
       drawerPosition: "right",
       drawerLabelStyle:{
         fontSize:24,
         fontFamily:fontsLoaded?'Alegreya Sans SC':'Roboto',
-        paddingLeft:24,
+        paddingLeft:20,
       },
       drawerItemStyle:{
         borderRadius:10,
@@ -76,7 +78,7 @@ const MyDrawer = () => {
       initialRouteName="HomeStack">
       <Drawer.Screen 
         name="MainPage" 
-        component={ComingSoon} 
+        component={MainPage} 
         options={{
           headerShown: false,
           title: "Main Page",
@@ -110,8 +112,9 @@ const Tabs = () => {
             justifyContent:'center',
             borderTopRightRadius:25,
             borderTopLeftRadius:25,
-            height:'10%',
-            backgroundColor:'#1D5F8F',
+            height:Platform.OS=='ios'?'12%':'10%',
+            backgroundColor:'#6D8CDB',
+            borderWidth:0,
             flexDirection: 'row',
             paddingTop:'4%',
             paddingLeft:'5%',
@@ -147,7 +150,7 @@ const Tabs = () => {
       />
       <Tab.Screen 
         name="MBooks" 
-        component={ComingSoon2} 
+        component={MessageScreen} 
         options={{
           headerShown: false,
           title: "",
@@ -158,7 +161,7 @@ const Tabs = () => {
       />
       <Tab.Screen 
         name="MBooks2" 
-        component={ComingSoon2} 
+        component={NotificationsScreen} 
         options={{
           headerShown: false,
           title: "",
@@ -195,6 +198,7 @@ const HStack = ({navigation}) => {
               <Text
                 style={{
                   fontFamily: fontsLoaded ? 'Contrail One' : 'Roboto',
+                  color:"#121212",
                   fontSize: 48,
                   bottom:"20%"
                 }}>Home</Text> 
@@ -244,10 +248,11 @@ const HStack = ({navigation}) => {
       options={{
         //alignItems:'center',
         title: " Home",
-        headerShadowVisible: false,
+        headerShadowVisible: true,
         headerTitleStyle: {
           fontFamily: fontsLoaded ? 'Contrail One' : 'Roboto',
           fontSize: 48,
+          color:"#121212",
         },
         headerStyle: {
           elevation: 0,
@@ -304,7 +309,7 @@ const HStack = ({navigation}) => {
 
   );
 }
-const ComingSoon = ({navigation}) => {
+const MainPage = ({navigation}) => {
   return (
     <Tabs/>
   );

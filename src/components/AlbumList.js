@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ImageBackground, Text, FlatList, SectionList, StyleSheet, View } from "react-native";
+import { Box } from "native-base";
 import {NativeBaseProvider,Heading} from 'native-base';
 import BooksDetail from "./BooksDetail";
 import sections from "../json/album_section.json";
@@ -24,8 +25,8 @@ const Albumlist = (navigation) => {
   
   const renderSectionHeader = ({section}) => (
     
-    <>
-      <Text style={styles.sectionHeader} >{section.title}</Text>
+    <><Box style={{flexDirection:"row"}} ><Text style={styles.sectionHeader} >{section.title}</Text><Text style={{marginLeft:"60%",alignSelf: "center"}} >more</Text></Box>
+      
       <MaskedView 
       style={{ flex: 1, flexDirection: 'row', height: '100%'}}
       maskElement={
@@ -41,7 +42,7 @@ const Albumlist = (navigation) => {
         </View>
       }
       >
-        <ImageBackground source={image} imageStyle={{ borderTopLeftRadius:50, borderBottomRightRadius:50}} style={{flex:1,justifyContent:"center",  resizeMode: 'cover'}}>
+        <ImageBackground source={image} imageStyle={{ borderTopLeftRadius:50, borderBottomRightRadius:50}} style={{borderTopLeftRadius:50, borderBottomRightRadius:50,flex:1,justifyContent:"center",  resizeMode: 'cover',width:"100%"}}>
         <FlatList
           horizontal={section.horizontal}
           data={section.data}
@@ -81,10 +82,12 @@ const Albumlist = (navigation) => {
 const styles = StyleSheet.create({
   sectionHeader: {
     // fontWeight: '600',
+    color:"#121212",
+    alignSelf: "center",
     fontSize: 24,
     fontFamily:fontsLoaded?'Alegreya Sans SC':'Roboto',
     fontWeight:"600",
-    paddingBottom: 20,
+    marginVertical:"3%",
     paddingLeft:28,
     // paddingLeft: 20,
     // textTransform: 'uppercase',
