@@ -96,7 +96,7 @@ const DetailScreen = ({ route }) => {
             color={colorMode == "light"?'#000':'#fff'}
             name={'heart-outline'}
             size={24}
-            onPress={() => navigation.openDrawer()}
+            onPress={() => null}
             style={{ alignSelf:"center" }} />
             </View>
             
