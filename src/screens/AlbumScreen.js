@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box } from "native-base";
+import { Box,useColorMode } from "native-base";
 import { ImageBackground,Text,Platform,View,Image } from "react-native";
 import AlbumList from "../components/AlbumList";
 import albumData from "../json/albums.json";
@@ -7,11 +7,12 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import { useFonts } from 'expo-font';
 import LGW from "../images/Linear_Gradient_White.png";
+import LGD from "../images/Linear_Gradient_DB.png";
 
 var fontsLoaded = true;
 
 const AlbumScreen = ({ navigation }) => {
-  
+  const { colorMode } = useColorMode();
   state = {
     fontsLoaded: false,
   };
@@ -57,7 +58,7 @@ const AlbumScreen = ({ navigation }) => {
           list={albumData.albumList}
           navigation={navigation} />
 
-      </Box><Image source={LGW} style={{ position: 'absolute',bottom:0,width:"100%" }}></Image></>
+      </Box><Image source={colorMode == "light"?LGW:LGD} style={{ position: 'absolute',bottom:0,width:"100%" }}></Image></>
 
   );
 };

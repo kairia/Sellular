@@ -1,6 +1,6 @@
 import React from 'react';
 import { ImageBackground,Platform, View, Text, Image, ScrollView, StyleSheet, } from 'react-native';
-import { Box } from "native-base";
+import { Box,useColorMode } from "native-base";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -13,6 +13,7 @@ import DetailScreen from '../screens/DetailScreen';
 import MessageScreen from '../screens/Messages';
 import NotificationsScreen from '../screens/Notifications';
 import SearchScreen from '../screens/Search';
+import AccountScreen from '../screens/AccountPage';
 import FlatGridTest from '../screens/FlatGridTest';
 
 import { useFonts } from 'expo-font';
@@ -25,9 +26,10 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 var fontsLoaded = true;
+var headerBgColor =["#fff","#000" ];
+var headerTitleColor=["#121212",'#8281D7'];
 
 const Navigation = () => {
-  
   state = {
     fontsLoaded: false,
   };
@@ -49,6 +51,7 @@ const Navigation = () => {
 }
 
 const MyDrawer = () => {
+  const { colorMode } = useColorMode();
   {drawerPosition: "right"}
   return (
     
@@ -57,9 +60,9 @@ const MyDrawer = () => {
     drawerContent={props => <CustomDrawer{...props}/> }
     screenOptions={{
       drawerType:'front',
-      drawerActiveBackgroundColor:'rgba(255,255,255,0.4)',
-      drawerActiveTintColor:'#121212',
-      drawerInactiveTintColor:'rgba(0,0,0,0.3)',
+      drawerActiveBackgroundColor:colorMode == "light"?'rgba(255,255,255,0.4)':'rgba(255,255,255,0.1)',
+      drawerActiveTintColor:colorMode == "light"?'#121212':'#fff',
+      drawerInactiveTintColor:colorMode == "light"?'rgba(0,0,0,0.3)':'rgba(255,255,255,0.3)',
       drawerPosition: "right",
       drawerLabelStyle:{
         fontSize:24,
@@ -90,7 +93,7 @@ const MyDrawer = () => {
       />
       <Drawer.Screen 
       name="My Account" 
-      component={FlatGridTest} 
+      component={AccountScreen} 
       options={{
         headerShown: false,
         title: "My Account",
@@ -104,6 +107,7 @@ const MyDrawer = () => {
 }
 
 const Tabs = () => {
+  const { colorMode } = useColorMode();
   return (
     <Tab.Navigator
       initialRouteName="HomeStack"
@@ -114,15 +118,15 @@ const Tabs = () => {
             borderTopRightRadius:25,
             borderTopLeftRadius:25,
             height:Platform.OS=='ios'?'12%':'10%',
-            backgroundColor:'#3E5EB0',
+            backgroundColor:colorMode == "light"?'#3E5EB0':'#2D2A54',
             borderWidth:0,
             flexDirection: 'row',
             paddingTop:'4%',
             paddingLeft:'5%',
             paddingRight:'5%',
           },
-        tabBarActiveTintColor: '#FFFFFF',
-        tabBarInactiveTintColor: '#6DC5F1',
+        tabBarActiveTintColor: colorMode == "light"?'#FFFFFF':'#4DA4F5',
+        tabBarInactiveTintColor:colorMode == "light"? '#6DC5F1':'#37548D',
         tabBarLabelPosition:'50%',
         headerShown: false,
       }}
@@ -176,6 +180,7 @@ const Tabs = () => {
 }
 
 const HStack = ({navigation}) => {
+  const { colorMode } = useColorMode();
   return (
     Platform.OS == 'ios' ?
     <>
@@ -254,12 +259,12 @@ const HStack = ({navigation}) => {
         headerTitleStyle: {
           fontFamily: fontsLoaded ? 'Contrail One' : 'Roboto',
           fontSize: 48,
-          color:"#121212",
+          color:colorMode == "light"?headerTitleColor[0]:headerTitleColor[1],
         },
         headerStyle: {
           elevation: 0,
           shadowOpacity: 0,
-          backgroundColor: "#fff",
+          backgroundColor: colorMode == "light"?headerBgColor[0]:headerBgColor[1],
           shadowOffset: 0,
           marginTop: '40%',
           height: 100,
@@ -269,7 +274,7 @@ const HStack = ({navigation}) => {
             name={'menu'}
             size={24}
             onPress={() => navigation.openDrawer()}
-            style={{ marginRight: 12 }} />
+            style={{ marginRight: 12,color:colorMode == "light"?"#121212":'#fff' }} />
         ),
       }} />
     <Stack.Screen

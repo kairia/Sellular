@@ -1,6 +1,6 @@
 import React from 'react';
 import { Linking , StyleSheet, View, Platform , ImageBackground ,TouchableOpacity } from 'react-native';
-import { Center, ScrollView, Box, AspectRatio, Text, Heading, Image, Button, HStack } from "native-base";
+import { Center, ScrollView, Box, AspectRatio, Text, Heading, Image, Button, HStack,useColorMode } from "native-base";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import  {LinearGradient}  from 'expo-linear-gradient';
@@ -9,14 +9,13 @@ import { useFonts } from 'expo-font';
 var fontsLoaded = true;
 var bannerBorderRadius = 40;
 
-import bg1 from "../images/BG_Daysky.jpg";
-import bg2 from "../images/BG_Nightsky.jpg";
 import LGW from "../images/Linear_Gradient_White.png";
+import LGD from "../images/Linear_Gradient_DB.png";
 
 var ad=[
   require('../images/BluePhone.jpg'),
-  require('../images/img_book_chanel.png'),
-  require('../images/img_book_calligraphy.png'),
+  require('../images/Pentax.jpg'),
+  require('../images/Tesla.jpg'),
   require('../images/img_book_ysl.png'),
   require('../images/img_book_tbos.png'),
   require('../images/img_book_stitchedup.png'),
@@ -27,6 +26,7 @@ var st=[
 ];
 
 const DetailScreen = ({ route }) => {
+  const { colorMode } = useColorMode();
 
   state = {
     fontsLoaded: false,
@@ -58,9 +58,9 @@ const DetailScreen = ({ route }) => {
   //colors={['#fff','rgba(255,255,255,0.5)','rgba(255,255,255,0)']}
 
   return (
-    <Box bg="white" height={"100%"} > 
+    <Box bg={colorMode == "light"?"#fff":"#050B21"} height={"100%"} > 
         <View bg="white" width={"80%"} height={"5%"} style={{}}></View>
-        <Box width={"100%"} style={{aspectRatio:1}} >
+        <Box width={"100%"} style={{aspectRatio:1,overflow:'hidden'}} >
           <ImageBackground
             source={ad[image]}
             alt='bookImage'
@@ -70,7 +70,7 @@ const DetailScreen = ({ route }) => {
           
           <Box bg="#fff" width={"3%"}height={"3%"} style={{position:"absolute",bottom:"5%",alignSelf:"center",borderRadius:50,opacity:0.8}}></Box>
           
-
+          <View style={{opacity:0.5,right:'2%',borderBottomRightRadius:bannerBorderRadius,width:'97%',height:'97%',alignSelf:'center',position:'absolute',borderBottomWidth:2,borderRightWidth:2,borderColor:"#fff"}}></View>
           {/* <LinearGradient 
           colors={['rgba(255,255,255,0)','rgba(255,255,255,0)','rgba(255,255,255,0.9)']} 
           locations={[0.0,0.3,1]}
@@ -79,20 +79,21 @@ const DetailScreen = ({ route }) => {
           // style={{borderBottomLeftRadius:50,borderBottomRightRadius:50}}
           >
           </LinearGradient> */}
-          <Image source={LGW} alt="LGW" style={{ position: 'absolute',bottom:0,width:"100%",opacity:0.5 }}></Image>
+          <Image source={colorMode == "light"?LGW:LGD} alt="LGW" style={{ position: 'absolute',bottom:0,width:"100%",opacity:0.5,overflow:'hidden' }}></Image>
           </ImageBackground>
         </Box>
         
         
           
         
-        <Box bg="transparent" width={"90%"} mx="auto" mt="5%">
+        <Box bg="transparent" width={"95%"} mx="auto" mt="5%">
           <Box bg="transparent" style={{justifyContent:"space-between",borderWidth:2,borderColor:"#999999",padding:"5%",paddingBottom:"20%",borderTopRightRadius:25,borderTopLeftRadius:25}} >
             <View style={{flexDirection:"row",justifyContent:"space-between"}}>
               
-            <Text textAlign="left" fontSize="24px" fontWeight="700" color='#121212' fontFamily='Nanum Gothic'>{title}</Text>
+            <Text textAlign="left" fontSize="24px" fontWeight="700" color={colorMode == "light"?'#121212':'#fff'} fontFamily='Nanum Gothic'>{title}</Text>
             {/* <Image source={bg2} alt="xx" style={{height: 48,width: 48,borderRadius:50}}/> */}
             <MaterialCommunityIcons
+            color={colorMode == "light"?'#000':'#fff'}
             name={'heart-outline'}
             size={24}
             onPress={() => navigation.openDrawer()}
@@ -101,7 +102,7 @@ const DetailScreen = ({ route }) => {
             
             <View style={{backgroundColor:"#859AAE" ,borderRadius:5,width:"20%"}}>
               <Center>
-                <Text fontSize="14px" color='#fff' style={{alignSelf: "center"}}> {artist}</Text>
+                <Text fontSize="14px" color={'#fff'} style={{alignSelf: "center"}}> {artist}</Text>
               </Center>
             </View>
             {star!="null"? <HStack mb="16px" alignItems="center">
@@ -112,7 +113,7 @@ const DetailScreen = ({ route }) => {
             <View style={{justifyContent:"center",backgroundColor:"transparent",height:"25%"}}>
             
              <Text textAlign="right" fontWeight={"700"}>Price</Text>
-             <Text textAlign="right" color="#121212" fontWeight={"700"} fontSize="24px">{"$"+price}</Text>
+             <Text textAlign="right" color={colorMode == "light"?"#121212":'#fff'} fontWeight={"700"} fontSize="24px">{"$"+price}</Text>
             </View>
             
 

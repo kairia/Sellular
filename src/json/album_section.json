@@ -15,25 +15,25 @@
       "descriptions": "A spectacular visual journey through 40 years of haute couture from one of the best-known and most trend-setting brands in fashion."
       },
       {
-         "owner":"Kevin Baker",
-         "ownerID":"Kevin0941",
-         "title": "Chanel",
-         "artist": "Patrick Mauriès",
+         "owner":"Ethan Stratos",
+         "ownerID":"Est666",
+         "title": "Pentax MX",
+         "artist": "Used",
          "url": "https://www.figma.com/file/p3pwNKq797lg9fBUOy4W2H/app-course---book-app-(android)?node-id=0%3A1",
          "image": "1",
          "star":"null",
-         "price": 69.420,
+         "price": 3499,
          "descriptions": "A spectacular visual journey through 40 years of haute couture from one of the best-known and most trend-setting brands in fashion."
       },
       {  
-         "owner":"Kevin Baker",
-         "ownerID":"Kevin0941",
-         "title": "Calligraphy",
-         "artist": "June & Lucy",
+         "owner":"Elon Musket",
+         "ownerID":"RealElon",
+         "title": "Tesla Roadster",
+         "artist": "Used",
          "url": "https://www.figma.com/file/p3pwNKq797lg9fBUOy4W2H/app-course---book-app-(android)?node-id=0%3A1",
          "image": "2",
          "star":"null",
-         "price": 9.99,
+         "price": 120000,
          "descriptions": "A spectacular visual journey through 40 years of haute couture from one of the best-known and most trend-setting brands in fashion."
       } 
    ]}

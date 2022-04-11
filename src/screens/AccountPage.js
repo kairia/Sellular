@@ -11,7 +11,7 @@ var fontsLoaded = true;
 var headerBgColor =["#fff","#000" ];
 var headerTitleColor=["#121212",'#8281D7'];
 
-const NotificationsScreen = ({ navigation }) => {
+const AccountScreen = ({ navigation }) => {
   const { colorMode } = useColorMode();
 
     state = {
@@ -55,7 +55,7 @@ return(
           fontSize: 48,
           top: "50%",
           left: "7%"
-        }}>Notifications</Text>
+        }}></Text>
       <MaterialCommunityIcons
         color={colorMode == "light" ? '#000' : '#fff'}
         name={'menu'}
@@ -74,4 +74,4 @@ return(
 );
 }
 
-export default NotificationsScreen
+export default AccountScreen

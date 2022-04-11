@@ -1,14 +1,14 @@
 import React from "react";
 import { ImageBackground,StyleSheet,  View} from "react-native";
-import {NativeBaseProvider,Box, Text,Heading,HStack,Pressable, Image} from "native-base";
+import {NativeBaseProvider,Box, Text,Heading,HStack,Pressable, Image,useColorMode} from "native-base";
 import image from "../images/BG_Nightsky.jpg";
 import MaskedView from '@react-native-masked-view/masked-view';
 
 
 var ad=[
   require('../images/BluePhone.jpg'),
-  require('../images/img_book_chanel.png'),
-  require('../images/img_book_calligraphy.png'),
+  require('../images/Pentax.jpg'),
+  require('../images/Tesla.jpg'),
   require('../images/img_book_ysl.png'),
   require('../images/img_book_tbos.png'),
   require('../images/img_book_stitchedup.png'),
@@ -19,10 +19,10 @@ var st=[
 ];
 const BooksDetail =({ album, navigation}) => {
   //  let { album } = props;
-  
+   const { colorMode } = useColorMode();
    return (
     // <NativeBaseProvider>
-      <Box bg="white" style={styles.cellStyle}> 
+      <Box bg="white" style={[styles.cellStyle,{backgroundColor:colorMode == "light"?"rgba(255,255,255,0.5)":"rgba(255,255,255,0.2)"}]}> 
            <Pressable
               onPress={() => {console.log(album);navigation.navigation.navigate('Detail',album)}}
             >
@@ -51,7 +51,7 @@ const BooksDetail =({ album, navigation}) => {
                   <Image source={image} alt="xx" style={{height: 40,width: 40,borderRadius:50,alignSelf:"center",opacity:0.8}}/>  
                   <View style={{flex:1,alignSelf:"center",justifyContent:'flex-end'}}>   
                   <Heading style={styles.headerTitleStyle}>{album.owner}</Heading>
-                  <Text style={styles.headerContentStyle} color="black:alpha.50" >@{album.ownerID}</Text>
+                  <Text style={[styles.headerContentStyle,{opacity:colorMode == "light"?1:0.8}]} color={colorMode == "light"?"black:alpha.50":"#fff"} >@{album.ownerID}</Text>
                   </View>
                 </Box>
                 

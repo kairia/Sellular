@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ImageBackground, Text, FlatList, SectionList, StyleSheet, View,Image,ScrollView } from "react-native";
-import { Box, Center } from "native-base";
+import { Box, Center,useColorMode } from "native-base";
 import {NativeBaseProvider,Heading} from 'native-base';
 import BooksDetail from "./BooksDetail";
 import sections from "../json/album_section.json";
@@ -9,12 +9,14 @@ import FlatGridTest from '../screens/FlatGridTest';
 
 import MaskedView from '@react-native-masked-view/masked-view';
 import image from "../images/BG_Daysky.jpg";
+import image2 from "../images/BG_Nightsky.jpg";
 import LGW from "../images/Linear_Gradient_White.png";
 
 import { useFonts } from 'expo-font';
 var fontsLoaded = true;
 
 const Albumlist = (navigation) => {
+  const { colorMode } = useColorMode();
   state = {
     fontsLoaded: false,
   };
@@ -29,7 +31,8 @@ const Albumlist = (navigation) => {
   
   const renderSectionHeader = ({section}) => (
     
-    <><Box style={{flexDirection:"row"}} ><Text style={styles.sectionHeader} >{section.title}</Text><Text style={{marginLeft:"60%",alignSelf: "center"}} >more</Text></Box>
+    
+    <Box bg={colorMode == "light"?"#EEF7FF":"#050B21"}><Box style={{flexDirection:"row"}} ><Text style={[styles.sectionHeader,{color:colorMode == "light"?"#121212":"#fff"}]} >{section.title}</Text><Text style={{marginLeft:"62%",alignSelf: "center"}} >more</Text></Box>
       
       <MaskedView 
       style={{ flex: 1, flexDirection: 'row', height: '100%'}}
@@ -46,7 +49,7 @@ const Albumlist = (navigation) => {
         </View>
       }
       >
-        <ImageBackground source={image} imageStyle={{ borderTopLeftRadius:50, borderBottomRightRadius:50}} style={{borderTopLeftRadius:50, borderBottomRightRadius:50,flex:1,justifyContent:"center",  resizeMode: 'cover',width:"100%"}}>
+        <ImageBackground source={colorMode == "light"?image:image2} imageStyle={{ borderTopLeftRadius:50, borderBottomRightRadius:50}} style={{borderTopLeftRadius:50, borderBottomRightRadius:50,flex:1,justifyContent:"center",  resizeMode: 'cover',width:"100%"}}>
         <FlatList
           // style={{paddingLeft:20}}
           horizontal={section.horizontal}
@@ -60,7 +63,7 @@ const Albumlist = (navigation) => {
 
       </MaskedView>
       
-      <Box style={{flexDirection:"row"}} ><Text style={[styles.sectionHeader,{marginBottom:"-2%"}]} >Explore</Text><Text style={{marginLeft:"60%",alignSelf: "center"}} ></Text></Box>  
+      <Box style={{flexDirection:"row"}} ><Text style={[styles.sectionHeader,{marginBottom:"-2%",color:colorMode == "light"?"#121212":"#fff"}]} >Explore</Text><Text style={{marginLeft:"60%",alignSelf: "center"}} ></Text></Box>  
       <MaskedView 
       style={{ flex: 1, flexDirection: 'row', height: '100%'}}
       maskElement={
@@ -69,7 +72,7 @@ const Albumlist = (navigation) => {
         width="90%" 
         height="100%" 
         style={{
-          backgroundColor: '#fff',
+          backgroundColor: '#000',
           borderTopRightRadius:50,
           borderBottomLeftRadius:50,
           marginTop:50,  
@@ -84,7 +87,7 @@ const Albumlist = (navigation) => {
       </MaskedView>
       
       
-    </>
+    </Box>
   );
   const renderItem = ({ item, section }) => {
     if (section.horizontal) {
