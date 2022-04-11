@@ -22,7 +22,7 @@ const BooksDetail =({ album, navigation}) => {
    const { colorMode } = useColorMode();
    return (
     // <NativeBaseProvider>
-      <Box bg="white" style={[styles.cellStyle,{backgroundColor:colorMode == "light"?"rgba(255,255,255,0.5)":"rgba(255,255,255,0.2)"}]}> 
+      <Box bg="white" style={[styles.cellStyle,{backgroundColor:colorMode == "light"?"rgba(255,255,255,0.5)":"rgba(255,255,255,0.2)",borderColor:colorMode == "light"?"#EDC8FF":'#6A53C3'}]}> 
            <Pressable
               onPress={() => {console.log(album);navigation.navigation.navigate('Detail',album)}}
             >

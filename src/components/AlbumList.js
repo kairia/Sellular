@@ -32,7 +32,13 @@ const Albumlist = (navigation) => {
   const renderSectionHeader = ({section}) => (
     
     
-    <Box bg={colorMode == "light"?"#EEF7FF":"#050B21"}><Box style={{flexDirection:"row"}} ><Text style={[styles.sectionHeader,{color:colorMode == "light"?"#121212":"#fff"}]} >{section.title}</Text><Text style={{marginLeft:"62%",alignSelf: "center"}} >more</Text></Box>
+    <Box bg={colorMode == "light"?"#EEF7FF":"#050B21"}>
+      <Box style={{flexDirection:"row",justifyContent:'space-between'}} >
+        <Text style={[styles.sectionHeader,{color:colorMode == "light"?"#121212":"#fff"}]} >{section.title}</Text>
+        <Box style={{justifyContent:'center',marginRight:28}}>
+        <Text style={{alignSelf: "center"}} >more</Text>
+        </Box>
+      </Box>
       
       <MaskedView 
       style={{ flex: 1, flexDirection: 'row', height: '100%'}}

@@ -3,6 +3,7 @@ import { Platform, Text, Image, StyleSheet,View } from "react-native";
 import { Box,useColorMode } from "native-base";
 import { Svg, Path } from "react-native-svg";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import AccountImage from "../images/no-default-image.jpg";
 
 import { useFonts } from 'expo-font';
 
@@ -63,10 +64,14 @@ return(
         onPress={() => navigation.openDrawer()}
         style={{ marginLeft: "87%", marginTop: "5%" }} />
     </Box>
-    <View height='100%' width='100%' style={{ backgroundColor: colorMode == "light" ? "#EEF7FF" : "#050B21", flex: 1, justifyContent: 'center', paddingBottom: '30%' }}>
+    <View height='100%' width='100%' style={{ backgroundColor: colorMode == "light" ? "#EEF7FF" : "#050B21", flex: 1, justifyContent: 'flex-start', paddingBottom: '30%' }}>
+    <Image source={AccountImage} style={{marginTop:'10%',borderWidth:1.5,borderColor:colorMode == "light"?"#7060D2":"#E3E9FF",alignSelf:"center",backgroundColor:"#E5E0FF",height:96,width:96,borderRadius:100,opacity:0.5}}></Image>
+    <Text style={{color:colorMode == "light"?"#121212":"#fff",fontSize:24,alignSelf:"center",fontFamily:'Alegreya Sans SC'}}>User</Text> 
+    <Text style={{color:colorMode == "light"?"#121212":"#fff",fontSize:16,alignSelf:"center"}}>@TestAccount0440</Text>   
+    <View style={{borderColor:colorMode == "light"?"#121212":"#fff",opacity:colorMode == "light"?0.5:0.3,borderTopLeftRadius:30,borderTopRightRadius:30,position:'absolute',alignSelf:"center",height:'40%',width:'90%',top:'40%',borderWidth:2,paddingBottom:500}}>
 
-        
-      </View>
+    </View>
+    </View>
       
       
       
