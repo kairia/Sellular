@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import { ImageBackground, Text, FlatList, SectionList, StyleSheet, View } from "react-native";
-import { Box } from "native-base";
+import { ImageBackground, Text, FlatList, SectionList, StyleSheet, View,Image,ScrollView } from "react-native";
+import { Box, Center } from "native-base";
 import {NativeBaseProvider,Heading} from 'native-base';
 import BooksDetail from "./BooksDetail";
 import sections from "../json/album_section.json";
+import FlatGridTest from '../screens/FlatGridTest';
+
 
 import MaskedView from '@react-native-masked-view/masked-view';
 import image from "../images/BG_Daysky.jpg";
+import LGW from "../images/Linear_Gradient_White.png";
+
 import { useFonts } from 'expo-font';
 var fontsLoaded = true;
 
@@ -44,6 +48,7 @@ const Albumlist = (navigation) => {
       >
         <ImageBackground source={image} imageStyle={{ borderTopLeftRadius:50, borderBottomRightRadius:50}} style={{borderTopLeftRadius:50, borderBottomRightRadius:50,flex:1,justifyContent:"center",  resizeMode: 'cover',width:"100%"}}>
         <FlatList
+          // style={{paddingLeft:20}}
           horizontal={section.horizontal}
           data={section.data}
           renderItem={({ item }) => <BooksDetail album={item} navigation={navigation}/>}
@@ -55,8 +60,29 @@ const Albumlist = (navigation) => {
 
       </MaskedView>
       
-      <Box style={{flexDirection:"row"}} ><Text style={styles.sectionHeader} >Explore</Text><Text style={{marginLeft:"60%",alignSelf: "center"}} ></Text></Box>  
-      <Text style={{color:"#000"}}>TEST</Text>
+      <Box style={{flexDirection:"row"}} ><Text style={[styles.sectionHeader,{marginBottom:"-2%"}]} >Explore</Text><Text style={{marginLeft:"60%",alignSelf: "center"}} ></Text></Box>  
+      <MaskedView 
+      style={{ flex: 1, flexDirection: 'row', height: '100%'}}
+      maskElement={
+        <Center>
+          <View 
+        width="90%" 
+        height="100%" 
+        style={{
+          backgroundColor: '#fff',
+          borderTopRightRadius:50,
+          borderBottomLeftRadius:50,
+          marginTop:50,  
+          }}>
+          
+        </View>
+        </Center>
+        
+      }
+      >
+      <FlatGridTest></FlatGridTest>
+      </MaskedView>
+      
       
     </>
   );

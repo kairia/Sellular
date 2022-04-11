@@ -13,7 +13,7 @@ import DetailScreen from '../screens/DetailScreen';
 import MessageScreen from '../screens/Messages';
 import NotificationsScreen from '../screens/Notifications';
 import SearchScreen from '../screens/Search';
-import HTabs from '../components/HTabs';
+import FlatGridTest from '../screens/FlatGridTest';
 
 import { useFonts } from 'expo-font';
 
@@ -90,7 +90,7 @@ const MyDrawer = () => {
       />
       <Drawer.Screen 
       name="My Account" 
-      component={Settings} 
+      component={FlatGridTest} 
       options={{
         headerShown: false,
         title: "My Account",
@@ -114,7 +114,7 @@ const Tabs = () => {
             borderTopRightRadius:25,
             borderTopLeftRadius:25,
             height:Platform.OS=='ios'?'12%':'10%',
-            backgroundColor:'#6D8CDB',
+            backgroundColor:'#3E5EB0',
             borderWidth:0,
             flexDirection: 'row',
             paddingTop:'4%',
@@ -205,6 +205,7 @@ const HStack = ({navigation}) => {
                 }}>Home</Text> 
 
           ),
+          
         }} />
       <Stack.Screen
         name="Detail"
@@ -228,7 +229,7 @@ const HStack = ({navigation}) => {
               color={"#fff"}
               size={40}
               onPress={() => navigation.goBack(null)}
-              style={{ marginLeft: 4 }} />
+              style={{ marginLeft: 4,marginBottom:10 }} />
           ),
           headerRight: () => (
             <MaterialCommunityIcons

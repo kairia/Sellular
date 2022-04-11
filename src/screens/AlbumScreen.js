@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Box } from "native-base";
-import { ImageBackground,Text,Platform,View } from "react-native";
+import { ImageBackground,Text,Platform,View,Image } from "react-native";
 import AlbumList from "../components/AlbumList";
 import albumData from "../json/albums.json";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { useFonts } from 'expo-font';
-
+import LGW from "../images/Linear_Gradient_White.png";
 
 var fontsLoaded = true;
 
@@ -51,13 +51,13 @@ const AlbumScreen = ({ navigation }) => {
           navigation={navigation} />
 
       </View></>:
-      <Box backgroundColor={"#F3FAFF"}>
-      <AlbumList
-        style={{ width: "100%" }}
-        list={albumData.albumList}
-        navigation={navigation} />
+      <><Box backgroundColor={"#F3FAFF"}>
+        <AlbumList
+          style={{ width: "100%" }}
+          list={albumData.albumList}
+          navigation={navigation} />
 
-    </Box>
+      </Box><Image source={LGW} style={{ position: 'absolute',bottom:0,width:"100%" }}></Image></>
 
   );
 };
