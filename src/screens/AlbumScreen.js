@@ -9,6 +9,9 @@ import { useFonts } from 'expo-font';
 import LGW from "../images/Linear_Gradient_White.png";
 import LGD from "../images/Linear_Gradient_DB.png";
 
+var headerBgColor =["#fff","#000" ];
+var headerTitleColor=["#121212",'#8281D7'];
+
 var fontsLoaded = true;
 
 const AlbumScreen = ({ navigation }) => {
@@ -30,20 +33,21 @@ const AlbumScreen = ({ navigation }) => {
 
   return (
     Platform.OS == 'ios' ?
-    <><Box bg="white" width="100%" height="15%" style={{shadowColor: '#171717',shadowOffset:{width: -2, height: 4},shadowOpacity: 0.2,shadowRadius: 3,}}>
+    <><Box bg={colorMode == "light"?headerBgColor[0]:headerBgColor[1]} width="100%" height="15%" style={{shadowColor: '#171717',shadowOffset:{width: -2, height: 4},shadowOpacity: 0.2,shadowRadius: 3,}}>
       <Text
         style={{
           fontFamily: fontsLoaded ? 'Contrail One' : 'Roboto',
           fontSize: 48,
           top: "40%",
           left: "7%",
-          color:"#343434",
+          color:colorMode == "light"?headerTitleColor[0]:headerTitleColor[1],
         }}>Home</Text>
       <MaterialCommunityIcons
         name={'menu'}
         size={24}
         onPress={() => navigation.openDrawer()}
-        style={{ marginLeft: "87%" }} />
+        style={{ marginLeft: "87%" }}
+        color={colorMode == "light"?'#121212':'#fff'} />
     </Box>
     <View backgroundColor={"#F3FAFF"} >
         <AlbumList

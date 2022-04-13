@@ -33,21 +33,7 @@ const MessageScreen = ({ navigation }) => {
 
 
 return( 
-    Platform.OS == 'ios' ?
-    <Box bg="white" width="100%" height="15%">
-    <Text
-      style={{
-        fontFamily: fontsLoaded ? 'Contrail One' : 'Roboto',
-        fontSize: 48,
-        top: "40%",
-        left: "5%"
-      }}>Messages</Text>
-    <MaterialCommunityIcons
-      name={'menu'}
-      size={24}
-      onPress={() => navigation.openDrawer()}
-      style={{ marginLeft: "87%" }} />
-  </Box>:
+   
   <><Box bg={colorMode == "light" ? headerBgColor[0] : headerBgColor[1]} width="100%" height="17%">
       <Text
         style={{

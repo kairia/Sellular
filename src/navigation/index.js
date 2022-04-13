@@ -1,10 +1,13 @@
-import React from 'react';
-import { ImageBackground,Platform, View, Text, Image, ScrollView, StyleSheet, } from 'react-native';
+import React,{ useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { ImageBackground,Platform, View, Text, Image, ScrollView, StyleSheet,Button,TouchableOpacity,TextInput, } from 'react-native';
 import { Box,useColorMode } from "native-base";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { LinearGradient }  from 'expo-linear-gradient';
+import { updateUsername } from '../actions/user';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -21,6 +24,7 @@ import { useFonts } from 'expo-font';
 import CustomDrawer from '../components/CustomDrawer';
 import { shadowOffset } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 import { Center } from 'native-base';
+import { Logs } from 'expo';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -45,12 +49,12 @@ const Navigation = () => {
   }
   return (
     <NavigationContainer>
-      <MyDrawer/>
+      <LogStack/>
     </NavigationContainer>
   );
 }
 
-const MyDrawer = () => {
+const MyDrawer = ({navigation}) => {
   const { colorMode } = useColorMode();
   {drawerPosition: "right"}
   return (
@@ -178,7 +182,68 @@ const Tabs = () => {
     </Tab.Navigator>
   );
 }
+const LogStack = ({navigation}) => {
+  const { colorMode } = useColorMode();
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Login"
+        component={Settings}
+        options={{
+          //alignItems:'center',
+          title:" " ,
+          headerShadowVisible: false,
+          headerShown:false,
+          headerRight: () => (
+            <MaterialCommunityIcons
+              name={'menu'}
+              size={24}
+              onPress={() => navigation.openDrawer()}
+              style={{ marginRight: 12 }} />
+          ),
+          headerLeft: () => (
+              <Text
+                style={{
+                  fontFamily: fontsLoaded ? 'Contrail One' : 'Roboto',
+                  color:"#121212",
+                  fontSize: 48,
+                  bottom:"20%"
+                }}>Home</Text> 
 
+          ),
+          
+        }} />
+        <Stack.Screen
+        name="Home"
+        component={MyDrawer}
+        options={{
+          //alignItems:'center',
+          title:" " ,
+          headerShadowVisible: false,
+          headerShown:false,
+          headerRight: () => (
+            <MaterialCommunityIcons
+              name={'menu'}
+              size={24}
+              onPress={() => navigation.openDrawer()}
+              style={{ marginRight: 12 }} />
+          ),
+          headerLeft: () => (
+              <Text
+                style={{
+                  fontFamily: fontsLoaded ? 'Contrail One' : 'Roboto',
+                  color:"#121212",
+                  fontSize: 48,
+                  bottom:"20%"
+                }}>Home</Text> 
+
+          ),
+          
+        }} />
+
+    </Stack.Navigator>
+    );
+  }
 const HStack = ({navigation}) => {
   const { colorMode } = useColorMode();
   return (
@@ -233,7 +298,7 @@ const HStack = ({navigation}) => {
               name={'chevron-left'}
               color={"#fff"}
               size={40}
-              onPress={() => navigation.goBack(null)}
+              onPress={() => navigation.navigate('Home')}
               style={{ marginLeft: 4,marginBottom:10 }} />
           ),
           headerRight: () => (
@@ -250,7 +315,7 @@ const HStack = ({navigation}) => {
     </Stack.Navigator></>:
     <Stack.Navigator>
     <Stack.Screen
-      name="Home"
+      name="maintop"
       component={AlbumScreen}
       options={{
         //alignItems:'center',
@@ -298,7 +363,7 @@ const HStack = ({navigation}) => {
             name={'chevron-left'}
             color={"#fff"}
             size={40}
-            onPress={() => navigation.goBack(null)}
+            onPress={() => navigation.navigate('maintop')}
             style={{ marginLeft: 0}} />
         ),
         headerRight: () => (
@@ -323,17 +388,71 @@ const MainPage = ({navigation}) => {
 
 }
 const Settings = ({navigation}) => {
+  const dispatch = useDispatch();
+
+  const user = useSelector( state => state.user );
+  const [newUsername, setNewUsername] = useState('');
+
+  const saveUsername = () => {
+  // in case the username hasnt been updated
+  if(newUsername === '') return;
+
+  dispatch( updateUsername(newUsername) );
+}
+
+  
   return (
-    <View style={styles.container}>
-    <Text style={styles.Text2}>Settings</Text>
-    <Text style={styles.Text}>
-    
-      coming soon...
-    </Text>
-  </View>
+    <><View style={styles.container}>
+      <Text style={styles.Text2}>Registeration(beta)</Text>
+      <Text style={styles.Text}>
+
+        Welcome {user.username}
+      </Text>
+      <TextInput 
+        style={{ marginVertical:'10%',height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 12, padding: 8, color: 'white',aspectRatio:6,alignSelf:'center'}}
+        onChangeText={text => setNewUsername(text)}
+        value={newUsername}
+        placeholder='Type in your name'
+        placeholderTextColor='white'
+    />
+    <View style={{height:'30%',justifyContent:'space-around'}}>
+       <TouchableOpacity onPress={() => saveUsername()} style={{alignSelf:'center'}}>
+             
+             <LinearGradient 
+              width={200}
+              height={50}
+              colors={['#3DB1D5','#8BB5EA','#D8B9FF']} 
+              style={{borderRadius:10,alignSelf:'center',justifyContent:'center'}}
+              bg="#6200EE"
+            >
+              <Center><Text fontWeight={700}  fontSize="14px" color={"#fff"} >Register</Text></Center>
+              
+              
+            </LinearGradient> 
+      </TouchableOpacity> 
+      <TouchableOpacity onPress={() => navigation.navigate('Home')} style={{alignSelf:'center'}}>
+             
+             <LinearGradient 
+              width={200}
+              height={50}
+              colors={['#3DB1D5','#8BB5EA','#D8B9FF']} 
+              style={{borderRadius:10,alignSelf:'center',justifyContent:'center'}}
+              bg="#6200EE"
+            >
+              <Center><Text fontWeight={700}  fontSize="14px" color={"#fff"} >LOGIN</Text></Center>
+              
+              
+            </LinearGradient> 
+      </TouchableOpacity>
+    </View>
+       
+    </View></>
   );
 
 }
+
+
+
 const ComingSoon2 = ({navigation}) => {
   return (
   <View style={styles.container}>
@@ -353,15 +472,17 @@ const styles = StyleSheet.create({
   Text:{
     color:'#FFF',
     fontSize:25,
+    alignSelf:'center'
   },
   Text2:{
     color:'#FFF',
-    fontSize:50,
+    fontSize:36,
+    alignSelf:'center'
   },
   container: {
-    flex: 1,
+    height:'100%',
+    width:'100%',
     backgroundColor: '#000',
-    alignItems: 'center',
     justifyContent: 'center',
   },
 });

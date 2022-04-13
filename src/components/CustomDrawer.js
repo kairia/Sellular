@@ -1,5 +1,6 @@
 import { DrawerContentScrollView, DrawerItemList } from "@react-navigation/drawer";
-import react,{ Component }  from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import react,{ useState }  from "react";
 import {ImageBackground,View,Text,Image} from 'react-native';
 import { Switch, useColorMode } from 'native-base';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -8,6 +9,7 @@ import image2 from "../images/BG_Nightsky.jpg";
 import AccountImage from "../images/no-default-image.jpg";
 import MaskedView from '@react-native-masked-view/masked-view';
 import ToggleSwitch from 'toggle-switch-react-native'
+import { updateUsername } from '../actions/user';
 
 import { useFonts } from 'expo-font';
 
@@ -15,6 +17,8 @@ var test = false;
 var fontsLoaded = true;
 
 const CustomDrawer = (props) => {
+    const dispatch = useDispatch();
+    const user = useSelector( state => state.user );
     const { colorMode, toggleColorMode } = useColorMode();
     state = {
         fontsLoaded: false,
@@ -38,7 +42,7 @@ const CustomDrawer = (props) => {
                <View style={{flexDirection:"row",borderTopWidth:0,borderLeftWidth:0,borderColor:colorMode == "light"?"#C3C9FF":"#E3E9FF",position:"absolute",bottom:0,right:0,backgroundColor:colorMode == "light"?"#E3E9FF":"#19192E",height:"90%",width:"95%",borderTopLeftRadius:40,borderBottomRightRadius:50,margin:0}}>
                  <Image source={AccountImage} style={{borderWidth:1.5,borderColor:colorMode == "light"?"#7060D2":"#E3E9FF",alignSelf:"center",backgroundColor:"#E5E0FF",height:64,width:64,borderRadius:50,opacity:0.5,marginLeft:"5%"}}></Image>
                  <View style={{margin:"5%",aspectRatio:2,alignSelf:"center",height:64,flexDirection:"row"}}>
-                   <Text style={{color:colorMode == "light"?"#121212":"#fff",paddingLeft:"10%",fontSize:24,alignSelf:"center",fontFamily:'Alegreya Sans SC'}}>User</Text>
+                   <Text style={{color:colorMode == "light"?"#121212":"#fff",paddingLeft:"10%",fontSize:24,alignSelf:"center",fontFamily:'Alegreya Sans SC'}}>{user.username}</Text>
                  </View>
                </View>
            </View>
