@@ -6,14 +6,17 @@ import albumData from "../json/albums.json";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { useFonts } from 'expo-font';
-import LGW from "../images/Linear_Gradient_White.png";
-import LGD from "../images/Linear_Gradient_DB.png";
 
 var headerBgColor =["#fff","#000" ];
 var headerTitleColor=["#121212",'#8281D7'];
 
 var fontsLoaded = true;
 
+var lg=[
+  require("../images/Linear_Gradient_White.png"),
+  require("../images/Linear_Gradient_DB.png"),
+
+]
 const AlbumScreen = ({ navigation }) => {
   const { colorMode } = useColorMode();
   state = {
@@ -62,7 +65,7 @@ const AlbumScreen = ({ navigation }) => {
           list={albumData.albumList}
           navigation={navigation} />
 
-      </Box><Image source={colorMode == "light"?LGW:LGD} style={{ position: 'absolute',bottom:0,width:"100%" }}></Image></>
+      </Box><Image source={colorMode == "light"?lg[0]:lg[1]} style={{ position: 'absolute',bottom:0,width:"100%" }}></Image></>
 
   );
 };

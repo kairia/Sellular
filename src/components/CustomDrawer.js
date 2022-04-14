@@ -3,15 +3,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import react,{ useState }  from "react";
 import {ImageBackground,View,Text,Image} from 'react-native';
 import { Switch, useColorMode } from 'native-base';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import image from "../images/BG_Daysky.jpg";
-import image2 from "../images/BG_Nightsky.jpg";
 import AccountImage from "../images/no-default-image.jpg";
-import MaskedView from '@react-native-masked-view/masked-view';
 import ToggleSwitch from 'toggle-switch-react-native'
-import { updateUsername } from '../actions/user';
 
 import { useFonts } from 'expo-font';
+
+var bg=[
+  require("../images/BG_Daysky.jpg"),
+  require("../images/BG_Nightsky.jpg"),
+
+]
 
 var test = false;
 var fontsLoaded = true;
@@ -37,7 +38,7 @@ const CustomDrawer = (props) => {
 
     return(
        
-        <ImageBackground source={colorMode == "light"?image:image2} imageStyle={{ borderTopLeftRadius:50}} style={{flex:1,justifyContent:"center",  resizeMode: 'cover'}}>
+        <ImageBackground source={colorMode == "light"?bg[0]:bg[1]} imageStyle={{ borderTopLeftRadius:50}} style={{flex:1,justifyContent:"center",  resizeMode: 'cover'}}>
            <View style={{borderBottomWidth:1,borderRightWidth:1,borderColor:colorMode == "light"?"#A89CF0":"#000",backgroundColor:colorMode == "light"?"#fff":"rgba(138,150,255,0.25)",height:"13%",width:"100%",borderTopLeftRadius:50,borderBottomRightRadius:50,margin:0}}>
                <View style={{flexDirection:"row",borderTopWidth:0,borderLeftWidth:0,borderColor:colorMode == "light"?"#C3C9FF":"#E3E9FF",position:"absolute",bottom:0,right:0,backgroundColor:colorMode == "light"?"#E3E9FF":"#19192E",height:"90%",width:"95%",borderTopLeftRadius:40,borderBottomRightRadius:50,margin:0}}>
                  <Image source={AccountImage} style={{borderWidth:1.5,borderColor:colorMode == "light"?"#7060D2":"#E3E9FF",alignSelf:"center",backgroundColor:"#E5E0FF",height:64,width:64,borderRadius:50,opacity:0.5,marginLeft:"5%"}}></Image>
@@ -56,7 +57,7 @@ const CustomDrawer = (props) => {
             
 
             <View style={{borderTopLeftRadius:50,position:"absolute",bottom:0,right:0,width:"95%",height:"13%",backgroundColor:"#E3E9FF",flexDirection:"row"}}>
-            <ImageBackground source={colorMode == "light"?image2:image} imageStyle={{borderTopLeftRadius:50}} style={{overflow:"hidden",flex:1,justifyContent:"flex-start",  resizeMode: 'cover',paddingTop:'10%',paddingLeft:'10%'}}>
+            <ImageBackground source={colorMode == "light"?bg[1]:bg[0]} imageStyle={{borderTopLeftRadius:50}} style={{overflow:"hidden",flex:1,justifyContent:"flex-start",  resizeMode: 'cover',paddingTop:'10%',paddingLeft:'10%'}}>
             {/* <Text style={{color:"#fff",alignSelf:"center",paddingBottom:"15%"}}>CustomText</Text> */}
                            {/* <View style={{borderTopLeftRadius:50,width:"200%",height:"100%",backgroundColor:"#000",position:'absolute',alignSelf:"center",left:0,paddingRight:"50%",opacity:colorMode == "light"?0:0.1}}></View> */}
 

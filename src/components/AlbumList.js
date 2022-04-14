@@ -12,6 +12,12 @@ import image from "../images/BG_Daysky.jpg";
 import image2 from "../images/BG_Nightsky.jpg";
 import LGW from "../images/Linear_Gradient_White.png";
 
+var bg=[
+  require("../images/BG_Daysky.jpg"),
+  require("../images/BG_Nightsky.jpg"),
+
+]
+
 import { useFonts } from 'expo-font';
 var fontsLoaded = true;
 
@@ -55,7 +61,7 @@ const Albumlist = (navigation) => {
         </View>
       }
       >
-        <ImageBackground source={colorMode == "light"?image:image2} imageStyle={{ borderTopLeftRadius:50, borderBottomRightRadius:50}} style={{borderTopLeftRadius:50, borderBottomRightRadius:50,flex:1,justifyContent:"center",  resizeMode: 'cover',width:"100%"}}>
+        <ImageBackground source={colorMode == "light"?bg[0]:bg[1]} imageStyle={{ borderTopLeftRadius:50, borderBottomRightRadius:50}} style={{borderTopLeftRadius:50, borderBottomRightRadius:50,flex:1,justifyContent:"center",  resizeMode: 'cover',width:"100%"}}>
         <FlatList
           // style={{paddingLeft:20}}
           horizontal={section.horizontal}

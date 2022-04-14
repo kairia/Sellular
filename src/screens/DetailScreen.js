@@ -9,20 +9,16 @@ import { useFonts } from 'expo-font';
 var fontsLoaded = true;
 var bannerBorderRadius = 40;
 
-import LGW from "../images/Linear_Gradient_White.png";
-import LGD from "../images/Linear_Gradient_DB.png";
 
+var lg=[
+  require("../images/Linear_Gradient_White.png"),
+  require("../images/Linear_Gradient_DB.png"),
+
+]
 var ad=[
   require('../images/BluePhone.jpg'),
   require('../images/Pentax.jpg'),
   require('../images/Tesla.jpg'),
-  require('../images/img_book_ysl.png'),
-  require('../images/img_book_tbos.png'),
-  require('../images/img_book_stitchedup.png'),
-];
-var st=[
-  require('../images/icon_star_empty.png'),
-  require('../images/icon_star_filled.png'),
 ];
 
 const DetailScreen = ({ route }) => {
@@ -79,7 +75,7 @@ const DetailScreen = ({ route }) => {
           // style={{borderBottomLeftRadius:50,borderBottomRightRadius:50}}
           >
           </LinearGradient> */}
-          <Image source={colorMode == "light"?LGW:LGD} alt="LGW" style={{ position: 'absolute',bottom:0,width:"100%",opacity:0.5,overflow:'hidden' }}></Image>
+          <Image source={colorMode == "light"?lg[0]:lg[1]} alt="LGW" style={{ position: 'absolute',bottom:0,width:"100%",opacity:0.5,overflow:'hidden' }}></Image>
           </ImageBackground>
         </Box>
         
