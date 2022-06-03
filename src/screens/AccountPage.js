@@ -9,6 +9,8 @@ import AccountImage from "../images/no-default-image.jpg";
 import { LinearGradient }  from 'expo-linear-gradient';
 
 import { useFonts } from 'expo-font';
+import { auth } from "../../firebase";
+import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 
 var fontsLoaded = true;
@@ -70,7 +72,7 @@ return(
     <Image source={AccountImage} style={{position:'absolute',top:"5%",borderWidth:1.5,borderColor:colorMode == "light"?"#7060D2":"#E3E9FF",alignSelf:"center",backgroundColor:"#E5E0FF",height:96,width:96,borderRadius:100,opacity:0.5}}></Image>
     <Text style={{position:'absolute',top:"25%",color:colorMode == "light"?"#121212":"#fff",fontSize:24,alignSelf:"center",fontFamily:'Alegreya Sans SC'}}>{user.username}</Text> 
     
-    <Text style={{position:'absolute',top:"30%",color:colorMode == "light"?"#121212":"#fff",fontSize:16,alignSelf:"center"}}>@TestAccount0440</Text>   
+    <Text style={{position:'absolute',top:"30%",color:colorMode == "light"?"#121212":"#fff",fontSize:16,alignSelf:"center"}}>{auth.currentUser?.email}</Text>   
     
      
     <View style={{borderColor:colorMode == "light"?"#121212":"#fff",opacity:colorMode == "light"?0.5:0.3,borderTopLeftRadius:30,borderTopRightRadius:30,position:'absolute',alignSelf:"center",height:'40%',width:'90%',top:'40%',borderWidth:2,paddingBottom:500}}>
@@ -94,7 +96,7 @@ return(
               style={{borderRadius:10,alignSelf:'center',justifyContent:'center'}}
               bg="#6200EE"
             >
-              <Center><Text fontWeight={700}  fontSize="14px" color={"#fff"} >Change</Text></Center>
+              <Center><Text size={20} style={{color:'#fff',fontSize:20}} >Change</Text></Center>
               
               
             </LinearGradient> 

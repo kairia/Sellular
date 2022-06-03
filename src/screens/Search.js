@@ -1,6 +1,6 @@
 import React from "react";
 import { Platform, Text, Image, StyleSheet,View,ImageBackground } from "react-native";
-import { Box,useColorMode } from "native-base";
+import { Box,Center,useColorMode } from "native-base";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { useFonts } from 'expo-font';
@@ -43,22 +43,23 @@ const SearchScreen = ({ navigation }) => {
 
 
 return( 
-  <><Box bg={colorMode == "light" ? headerBgColor[0] : headerBgColor[1]} width="100%" height="17%">
+  <><View bg={colorMode == "light" ? headerBgColor[0] : headerBgColor[1]} width="100%" height="13%" style={{backgroundColor: colorMode == "light" ? headerBgColor[0] : headerBgColor[1], flex: 1,justifyContent:'space-between',flexDirection:'row'}}>
       <Text
         style={{
           color: colorMode == "light" ? headerTitleColor[0] : headerTitleColor[1],
           fontFamily: fontsLoaded ? 'Contrail One' : 'Roboto',
           fontSize: 48,
-          top: "50%",
-          left: "7%"
+          alignSelf:'center',
+          marginLeft:'5%',
+          marginTop:'6%'
         }}>Search</Text>
       <MaterialCommunityIcons
         color={colorMode == "light" ? '#000' : '#fff'}
         name={'menu'}
         size={24}
         onPress={() => navigation.openDrawer()}
-        style={{ marginLeft: "87%", marginTop: "5%" }} />
-    </Box><View height='100%' width='100%' style={{ backgroundColor: colorMode == "light" ? "#EEF7FF" : "#050B21", flex: 1, justifyContent: 'flex-start', paddingBottom: '30%' }}>
+        style={{ alignSelf:'center',marginRight:'8%' }} />
+    </View><View height='100%' width='100%' style={{ backgroundColor: colorMode == "light" ? "#EEF7FF" : "#050B21", flex: 6, justifyContent: 'flex-start', paddingBottom: '30%' }}>
     <ImageBackground source={colorMode == "light"?bg[0]:bg[1]} imageStyle={{overflow:'hidden', borderBottomLeftRadius:25}} style={{overflow:'hidden',height:'85%',justifyContent:"center",  resizeMode: 'cover',top:0}}>
      <View style={{borderBottomLeftRadius:25,overflow:'hidden',marginBottom:'34%',height:'100%',justifyContent:"center",  resizeMode: 'cover',top:0}}>
      <Image width='90%' source={BBG} style={{position:'absolute',alignSelf:'center',opacity:colorMode == "light" ?1:0.3}}></Image>
