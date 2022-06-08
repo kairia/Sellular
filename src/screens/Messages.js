@@ -43,7 +43,12 @@ return(
           alignSelf:'center',
           marginLeft:'5%',
           marginTop:'6%'
-        }}>Notify</Text>
+        }}>Notifies</Text><MaterialCommunityIcons
+        name={'cart-variant'}
+        size={24}
+        onPress={() =>  navigation.navigate('Cart')}
+        style={{ alignSelf:'center',marginRight:'-30%'}}
+        color={colorMode == "light"?'#121212':'#fff'} />
       <MaterialCommunityIcons
         color={colorMode == "light" ? '#000' : '#fff'}
         name={'menu'}

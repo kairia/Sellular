@@ -53,7 +53,7 @@ return(
  </View>
     <View height='100%' width='100%' style={{ backgroundColor: colorMode == "light" ? "#EEF7FF" : "#050B21", flex: 6, justifyContent: 'center', paddingBottom: '30%' }}>
 
-        
+        <View style={{ backgroundColor: colorMode == "light" ? "#EEF7FF" : "#050B21", borderColor:'black', justifyContent: 'center', paddingBottom: '30%' }}></View>
       </View>
       
       

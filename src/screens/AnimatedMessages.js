@@ -114,7 +114,7 @@ const Item = ({ item, index,scrollY, itemY, itemHeight }) => {
           marginBottom: _spacing,
           height: item.height,
           padding: _spacing,
-          borderRadius: 16,
+          borderRadius: 28,
           borderColor:'#be60e6',
           borderWidth:2,
           opacity:0.5
@@ -190,7 +190,12 @@ if(!fontsLoaded) {
         alignSelf: 'center',
         marginLeft: '5%',
         marginTop: '6%'
-      }}>Messages</Text>
+      }}>Messages</Text><MaterialCommunityIcons
+      name={'cart-variant'}
+      size={24}
+      onPress={() =>  navigation.navigate('Cart')}
+      style={{ alignSelf:'center',marginRight:'-22%'}}
+      color={colorMode == "light"?'#121212':'#fff'} />
     <MaterialCommunityIcons
       color={colorMode == "light" ? '#000' : '#fff'}
       name={'menu'}

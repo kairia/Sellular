@@ -67,7 +67,7 @@ export default function Wallpapers() {
         },
       }).then((x) => x.json());
 
-      console.log(data[0]);
+      // console.log(data[0]);
       memoData.current = data.photos;
       setData(data.photos);
     })();
@@ -207,14 +207,14 @@ export default function Wallpapers() {
                     top:containerloc,
                     position:'absolute',
                     alignSelf:'center',
-                    width:'120%',
-                    height:'30%',
-                    backgroundColor:'#121212',
+                    width:'95%',
+                    height:'13%',
+                    backgroundColor:'rgba(0,0,0,0.05)',
                     zIndex:5,
                     elevation:0,
-                    opacity:0.1,
-                    borderTopRightRadius:20,
-                    borderTopLeftRadius:20,
+                    borderRadius:28,
+                    borderColor:'rgba(255,255,255,0.1)',
+                    borderWidth:2
                   },
                 ]}>
 
@@ -235,6 +235,12 @@ export default function Wallpapers() {
        marginLeft:'5%',
        marginTop:'6%'
      }}>Explore</Text>
+     <MaterialCommunityIcons
+             name={'cart-variant'}
+             size={24}
+             onPress={() =>  navigation.navigate('Cart')}
+             style={{ alignSelf:'center',marginRight:'-30%'}}
+             color={colorMode == "light"?'#121212':'#fff'} />
    <MaterialCommunityIcons
      color={colorMode == "light" ? '#000' : '#fff'}
      name={'menu'}

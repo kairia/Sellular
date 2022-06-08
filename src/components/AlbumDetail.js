@@ -20,7 +20,7 @@ const AlbumDetail = ({ album, navigation }) => {
       </HStack>
       <Box p={1} bg="#fff">
         <Pressable 
-          onPress={() => {console.log(album);navigation.navigate('Detail', album)}}
+          onPress={() => {navigation.navigate('Detail', album)}}
         >
           <AspectRatio w="100%" ratio={1}>
             <Image

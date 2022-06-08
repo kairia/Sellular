@@ -44,21 +44,30 @@ const AlbumScreen = ({ navigation }) => {
 
   return (
     <>
-    <Box bg={colorMode == "light"?headerBgColor[0]:headerBgColor[1]} width="100%" height="12%" style={{shadowColor: '#171717',shadowOffset:{width: -2, height: 4},shadowOpacity: 0.2,shadowRadius: 3,justifyContent:'center',flexDirection:'column'}}>
+    <Box bg={colorMode == "light"?headerBgColor[0]:headerBgColor[1]} width="100%" height="12%" style={{shadowColor: '#171717',shadowOffset:{width: -2, height: 4},shadowOpacity: 0.2,shadowRadius: 3,justifyContent:'space-between',flexDirection:'row'}}>
       <Text
         style={{
           fontFamily: fontsLoaded ? 'Contrail One' : 'Roboto',
           fontSize: 48,
-          top: "28%",
-          left: "7%",
           color:colorMode == "light"?headerTitleColor[0]:headerTitleColor[1],
+          alignSelf:'flex-end',
+          paddingLeft:'8%'
         }}>Home</Text>
+        <View  style={{flexDirection:'row',alignSelf:'center' ,marginRight:'8%'}}>
+          <MaterialCommunityIcons
+             name={'cart-variant'}
+             size={24}
+             onPress={() =>  navigation.navigate('Cart')}
+             style={{ marginRight:12}}
+             color={colorMode == "light"?'#121212':'#fff'} />
       <MaterialCommunityIcons
         name={'menu'}
         size={24}
         onPress={() => navigation.openDrawer()}
-        style={{ marginLeft: "86%",bottom:'35%' }}
+        style={{ }}
         color={colorMode == "light"?'#121212':'#fff'} />
+        </View>
+        
     </Box>
     <View backgroundColor={"#F3FAFF"} >
         <AlbumList

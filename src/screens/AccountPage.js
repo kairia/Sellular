@@ -30,10 +30,25 @@ const AccountScreen = ({ navigation }) => {
   const user = useSelector( state => state.user );
   const { colorMode } = useColorMode();
   const saveUsername = () => {
+ 
+
+
+
+
     // in case the username hasnt been updated
     if(newUsername === '') return;
   
     dispatch( updateUsername(newUsername) );
+  }
+  const handleSignOut = () =>{
+
+    auth
+    .signOut()
+    .then(()=>{
+
+      navigation.replace("Login")
+    })
+    .catch(error => alert(error.message))
   }
 
     state = {
@@ -107,7 +122,7 @@ return(
               
             </LinearGradient> 
       </TouchableOpacity> 
-      <TouchableOpacity onPress={() => saveUsername()} style={{alignSelf:'center',marginTop:40}}>
+      <TouchableOpacity onPress={() => handleSignOut()} style={{alignSelf:'center',marginTop:40}}>
              
              <LinearGradient 
               width={180}

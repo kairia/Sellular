@@ -15,6 +15,7 @@ import AlbumScreen from '../screens/AlbumScreen';
 import DetailScreen from '../screens/DetailScreen';
 import MessageScreen from '../screens/Messages';
 import NotificationsScreen from '../screens/Notifications';
+import CartScreen from '../screens/Cart';
 import SearchScreen from '../screens/Search';
 import AccountScreen from '../screens/AccountPage';
 import RegisterScreen from '../screens/Register';
@@ -36,6 +37,7 @@ import { Images, argonTheme } from "../constants";
 import ArgonOnboard from "../constants/Images";
 import { auth } from '../../firebase';
 import { useDelay } from 'react-use-precision-timer';
+import Cart from '../screens/Cart';
 
 const { width, height } = Dimensions.get("screen");
 
@@ -179,6 +181,18 @@ const Tabs = () => {
           ),
         }}
       />
+      {/* <Tab.Screen 
+        name="WList44" 
+        component={Placeholder} 
+        options={{
+          onPress:({previousS}),
+          headerShown: false,
+          title: "",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="magnify" color={color} size={28} />
+          ),
+        }}
+      /> */}
       <Tab.Screen 
         name="MBooks" 
         component={MessageScreen} 
@@ -258,11 +272,16 @@ const LogStack = ({navigation}) => {
           headerShadowVisible: false,
           headerShown:false,
           headerRight: () => (
-            <MaterialCommunityIcons
-              name={'menu'}
+            <><MaterialCommunityIcons
+              name={'cart-variant'}
+              color={{ marginRight: 12, color: colorMode == "light" ? "#121212" : '#fff' }}
               size={24}
-              onPress={() => navigation.openDrawer()}
-              style={{ marginRight: 12 }} />
+              onPress={() => navigation.navigate('Cart')}
+              style={{ marginRight: 10 }} /><MaterialCommunityIcons
+                name={'menu'}
+                size={24}
+                onPress={() => navigation.openDrawer()}
+                style={{ marginRight: 12 }} /></>
           ),
           headerLeft: () => (
               <Text
@@ -344,10 +363,38 @@ const HStack = ({navigation}) => {
               size={24}
               onPress={() => navigation.openDrawer()}
               style={{ marginLeft: 16 }} />
+              
 
           ),
           backgroundColor: '#fff',
         })} />
+        <Stack.Screen
+        name="Cart"
+        component={Placeholder}
+        options={{
+          //alignItems:'center',
+          title:" " ,
+          headerShadowVisible: false,
+          headerShown:false,
+          headerRight: () => (
+            <MaterialCommunityIcons
+              name={'menu'}
+              size={24}
+              onPress={() => navigation.openDrawer()}
+              style={{ marginRight: 12 }} />
+          ),
+          headerLeft: () => (
+              <Text
+                style={{
+                  fontFamily: fontsLoaded ? 'Contrail One' : 'Roboto',
+                  color:"#121212",
+                  fontSize: 48,
+                  bottom:"20%"
+                }}>Home</Text> 
+
+          ),
+          
+        }} />
     </Stack.Navigator></>:
     <Stack.Navigator>
     <Stack.Screen
@@ -372,11 +419,16 @@ const HStack = ({navigation}) => {
           height: 100,
         },
         headerRight: () => (
-          <MaterialCommunityIcons
-            name={'menu'}
+          <><MaterialCommunityIcons
+            name={'cart-variant'}
+            color={{marginRight: 12, color: colorMode == "light" ? "#121212" : '#fff'}}
             size={24}
-            onPress={() => navigation.openDrawer()}
-            style={{ marginRight: 12,color:colorMode == "light"?"#121212":'#fff' }} />
+            onPress={() => navigation.navigate('Cart')}
+            style={{ marginRight: 10 }} /><MaterialCommunityIcons
+              name={'menu'}
+              size={24}
+              onPress={() => navigation.openDrawer()}
+              style={{ marginRight: 12, color: colorMode == "light" ? "#121212" : '#fff' }} /></>
         ),
       }} />
     <Stack.Screen
@@ -404,16 +456,48 @@ const HStack = ({navigation}) => {
             style={{ marginLeft: 0,marginTop:'10%'}} />
         ),
         headerRight: () => (
-          <MaterialCommunityIcons
-            name={'menu'}
+          <><MaterialCommunityIcons
+            name={'cart-variant'}
             color={"#fff"}
             size={24}
-            onPress={() => navigation.openDrawer()}
-            style={{ marginLeft: 0}} />
+            onPress={() => navigation.navigate('Cart')}
+            style={{ marginRight: 10 }} /><MaterialCommunityIcons
+              name={'menu'}
+              color={"#fff"}
+              size={24}
+              onPress={() => navigation.openDrawer()}
+              style={{ marginLeft: 0 }} /></>
 
         ),
         backgroundColor: '#fff',
       })} />
+       <Stack.Screen
+        name="Cart"
+        component={CartScreen}
+        options={{
+          //alignItems:'center',
+          title:" " ,
+          headerShadowVisible: false,
+          headerShown:false,
+          headerRight: () => (
+            <MaterialCommunityIcons
+              name={'menu'}
+              size={24}
+              onPress={() => navigation.openDrawer()}
+              style={{ marginRight: 12 }} />
+          ),
+          headerLeft: () => (
+              <Text
+                style={{
+                  fontFamily: fontsLoaded ? 'Contrail One' : 'Roboto',
+                  color:"#121212",
+                  fontSize: 48,
+                  bottom:"20%"
+                }}>Home</Text> 
+
+          ),
+          
+        }} />
   </Stack.Navigator>
 
   );
@@ -433,6 +517,11 @@ const MainPage = ({navigation}) => {
   return (
     <Tabs />
   );
+
+}
+const Placeholder = ({navigation}) => {
+
+  return null
 
 }
 
@@ -546,7 +635,7 @@ const Regi = ({navigation}) => {
                         borderless
                         onChangeText={text => setNewUsername(text)}
                         value={newUsername}
-                        placeholder="User Name"
+                        placeholder="User Name(optional)"
                         iconContent={
                           <Icon
                             size={16}
@@ -618,7 +707,7 @@ const Regi = ({navigation}) => {
                       </Block>
                     </Block>
                     <Block row width={width * 0.75}>
-                      <Checkbox
+                      {/* <Checkbox
                         checkboxStyle={{
                           borderWidth: 3
                         }}
@@ -634,7 +723,7 @@ const Regi = ({navigation}) => {
                         }}
                       >
                         Privacy Policy
-                      </Button>
+                      </Button> */}
                     </Block>
                     <Block middle>
                       <Button onPress={handleLogin} color="primary" style={styles.createButton}>
@@ -740,7 +829,7 @@ const styles = StyleSheet.create({
     width: width * 0.9,
     height: height * 0.7,
     backgroundColor: "#F4F5F7",
-    borderRadius: 4,
+    borderRadius: 28,
     shadowColor: argonTheme.COLORS.BLACK,
     shadowOffset: {
       width: 0,
