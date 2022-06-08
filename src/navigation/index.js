@@ -21,7 +21,9 @@ import RegisterScreen from '../screens/Register';
 import FlatGridTest from '../screens/FlatGridTest';
 import AlternateHome from '../screens/AnimatedHome.js'
 import LoadingIndicator from '../components/loadingAnimation.tsx';
+import animatedCards from '../screens/AnimatedCards.js';
 
+import animatedMessages from '../screens/AnimatedMessages.js';
 import { useFonts } from 'expo-font';
 
 import CustomDrawer from '../components/CustomDrawer'; 
@@ -33,6 +35,7 @@ import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 import ArgonOnboard from "../constants/Images";
 import { auth } from '../../firebase';
+import { useDelay } from 'react-use-precision-timer';
 
 const { width, height } = Dimensions.get("screen");
 
@@ -49,12 +52,11 @@ const Navigation = () => {
     fontsLoaded: false,
   };
   
-
   let [fontsLoaded] = useFonts({
     'Contrail One': require('../../assets/fonts/ContrailOne-Regular.ttf'),
     'Alegreya Sans SC': require('../../assets/fonts/AlegreyaSansSC-Regular.ttf')
   })
-
+  
   if(!fontsLoaded) {
     return null;
   }
@@ -155,16 +157,20 @@ const Tabs = () => {
         name="HomeStack" 
         component={HStack}
         options={{
+          unmountOnBlur:true,
           headerShown: false,
           title: "",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home-variant" color={color} size={28} />
           ),
         }}
+        listeners={({ navigation }) => ({
+          blur: () => navigation.setParams({ screen: undefined }),
+        })}
       />
       <Tab.Screen 
         name="WList" 
-        component={SearchScreen} 
+        component={animatedCards} 
         options={{
           headerShown: false,
           title: "",
@@ -180,20 +186,24 @@ const Tabs = () => {
           headerShown: false,
           title: "",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="message-text" color={color} size={24} />
+            <MaterialCommunityIcons name="bell" color={color} size={24} />
           ),
         }}
       />
       <Tab.Screen 
         name="MBooks2" 
-        component={NotificationsScreen} 
+        component={animatedMessages} 
         options={{
+          unmountOnBlur:true,
           headerShown: false,
           title: "",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="bell" color={color} size={24} />
+            <MaterialCommunityIcons name="message-text" color={color} size={24} />
           ),
-        }}
+        }} 
+        listeners={({ navigation }) => ({
+          blur: () => navigation.setParams({ screen: undefined }),
+        })}
       />
     </Tab.Navigator>
   );
@@ -309,9 +319,9 @@ const HStack = ({navigation}) => {
         options={({ route }) => ({
           title: "",
           headerShadowVisible: false,
-          headerTransparent: true,
+          headerTransparent: false,
           headerStyle: {
-            backgroundColor: 'rgba(255,255,255,0)',
+            backgroundColor: 'rgba(255,255,255,1)',
             position: 'absolute',
           },
           headerTintColor: '#000',
@@ -322,7 +332,7 @@ const HStack = ({navigation}) => {
           headerLeft: () => (
             <MaterialCommunityIcons
               name={'chevron-left'}
-              color={"#fff"}
+              color={colorMode==light?"#fff":"#121212"}
               size={40}
               onPress={() => navigation.navigate('Home')}
               style={{ marginLeft: 4,marginBottom:10 }} />
@@ -330,7 +340,7 @@ const HStack = ({navigation}) => {
           headerRight: () => (
             <MaterialCommunityIcons
               name={'menu'}
-              color={'#fff'}
+              color={colorMode==light?"#fff":"#121212"}
               size={24}
               onPress={() => navigation.openDrawer()}
               style={{ marginLeft: 16 }} />
@@ -378,7 +388,7 @@ const HStack = ({navigation}) => {
         headerTransparent: true,
         headerStyle: {
           backgroundColor: 'rgba(255,255,255,0)',
-          position: 'absolute',
+          
         },
         headerTintColor: '#000',
         headerTitleStyle: {
@@ -391,15 +401,15 @@ const HStack = ({navigation}) => {
             color={"#fff"}
             size={40}
             onPress={() => navigation.navigate('maintop')}
-            style={{ marginLeft: 0}} />
+            style={{ marginLeft: 0,marginTop:'10%'}} />
         ),
         headerRight: () => (
           <MaterialCommunityIcons
             name={'menu'}
-            color={'#fff'}
+            color={"#fff"}
             size={24}
             onPress={() => navigation.openDrawer()}
-            style={{ marginLeft: 16 }} />
+            style={{ marginLeft: 0}} />
 
         ),
         backgroundColor: '#fff',
@@ -409,14 +419,19 @@ const HStack = ({navigation}) => {
   );
 }
 const MainPage = ({navigation}) => {
+  const callback = () => isLoaded=true;
+  useDelay(5000, callback);
 
-  return (
-    
-    <>
+  if(!isLoaded){
+
+  return(<>
     <Tabs />
     <LoadingIndicator />
-    </>
-    
+    </>)
+  }
+
+  return (
+    <Tabs />
   );
 
 }
@@ -650,6 +665,10 @@ const Regi = ({navigation}) => {
 
 
 const Onboarding = ({navigation}) => {
+
+  if(isLoaded)
+  isLoaded=false;
+
   return (
     <Block flex style={styles.container2}>
     <StatusBar hidden />

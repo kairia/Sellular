@@ -11,7 +11,13 @@ import { LinearGradient }  from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import { auth } from "../../firebase";
 import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
+import { ImageBackground } from "react-native";
 
+var bg=[
+  require("../images/BG_Daysky.jpg"),
+  require("../images/BG_Nightsky.jpg"),
+
+]
 
 var fontsLoaded = true;
 var headerBgColor =["#fff","#000" ];
@@ -49,24 +55,24 @@ const AccountScreen = ({ navigation }) => {
 
 return( 
     
-  <><Box bg={colorMode == "light" ? headerBgColor[0] : headerBgColor[1]} width="100%" height="17%" style={{justifyContent:Platform.OS=='ios'?'center':null}}>
-      <Text
-        style={{
-          color: colorMode == "light" ? headerTitleColor[0] : headerTitleColor[1],
-          fontFamily: fontsLoaded ? 'Contrail One' : 'Roboto',
-          fontSize: 48,
-          top: "50%",
-          left: "7%"
-        }}></Text>
-      <MaterialCommunityIcons
-        color={colorMode == "light" ? '#000' : '#fff'}
-        name={'menu'}
-        size={24}
-        marginTop={Platform.OS=='ios'?'50%':0}
-        top={Platform.OS=='ios'?'50%':0}
-        onPress={() => navigation.openDrawer()}
-        style={{ marginLeft: "87%", marginTop: "5%" }} />
-    </Box>
+  <>
+  <View bg={colorMode == "light" ? headerBgColor[0] : headerBgColor[1]} width="100%" height="13%" style={{backgroundColor: colorMode == "light" ? headerBgColor[0] : headerBgColor[1],justifyContent:'space-between',flexDirection:'row'}}>
+  <Text
+     style={{
+       color: colorMode == "light" ? headerTitleColor[0] : headerTitleColor[1],
+       fontFamily: fontsLoaded ? 'Contrail One' : 'Roboto',
+       fontSize: 48,
+       alignSelf:'center',
+       marginLeft:'5%',
+       marginTop:'6%'
+     }}>Account</Text>
+   <MaterialCommunityIcons
+     color={colorMode == "light" ? '#000' : '#fff'}
+     name={'menu'}
+     size={24}
+     onPress={() => navigation.openDrawer()}
+     style={{ alignSelf:'center',marginRight:'8%' }} />
+ </View>
     
     <View height='100%' width='100%' style={{ backgroundColor: colorMode == "light" ? "#EEF7FF" : "#050B21", flex: 1, justifyContent: 'flex-start', paddingBottom: '30%' }}>
     <Image source={AccountImage} style={{position:'absolute',top:"5%",borderWidth:1.5,borderColor:colorMode == "light"?"#7060D2":"#E3E9FF",alignSelf:"center",backgroundColor:"#E5E0FF",height:96,width:96,borderRadius:100,opacity:0.5}}></Image>
@@ -85,18 +91,32 @@ return(
         placeholder='Change Username'
         placeholderTextColor={colorMode == "light" ?'black':'white'}
     />
-    <View style={{width:'100%',position:'absolute',top:"70%",justifyContent:'center',flexDirection:'row'}}>
+    <View style={{width:'100%',position:'absolute',top:"75%",justifyContent:'center',flexDirection:'row'}}>
       <Center>
         <TouchableOpacity onPress={() => saveUsername()} style={{alignSelf:'center'}}>
              
              <LinearGradient 
-              width={200}
-              height={50}
+              width={180}
+              height={40}
               colors={['#3DB1D5','#8BB5EA','#D8B9FF']} 
               style={{borderRadius:10,alignSelf:'center',justifyContent:'center'}}
               bg="#6200EE"
             >
-              <Center><Text size={20} style={{color:'#fff',fontSize:20}} >Change</Text></Center>
+              <Center><Text size={12} style={{color:'#fff',fontSize:16}} >Change ID</Text></Center>
+              
+              
+            </LinearGradient> 
+      </TouchableOpacity> 
+      <TouchableOpacity onPress={() => saveUsername()} style={{alignSelf:'center',marginTop:40}}>
+             
+             <LinearGradient 
+              width={180}
+              height={40}
+              colors={['#c9cbd1','#c9cbd1','#c9cbd1']} 
+              style={{borderRadius:10,alignSelf:'center',justifyContent:'center'}}
+              bg="#6200EE"
+            >
+              <Center><Text size={12} style={{color:'#fff',fontSize:16}} >Log Out</Text></Center>
               
               
             </LinearGradient> 

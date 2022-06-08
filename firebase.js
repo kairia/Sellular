@@ -2,6 +2,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import { getDatabase } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -14,7 +15,8 @@ const firebaseConfig = {
   storageBucket: "sellular-c87b8.appspot.com",
   messagingSenderId: "1096785164831",
   appId: "1:1096785164831:web:d344945c0632f44fad732a",
-  measurementId: "G-9TRGNWXFNK"
+  measurementId: "G-9TRGNWXFNK",
+  databaseURL:'https://sellular-c87b8-default-rtdb.asia-southeast1.firebasedatabase.app/'
 };
 
 // Initialize Firebase
@@ -25,6 +27,8 @@ if(!firebase.apps.length){
     app = firebase.app();
 }
 
-const auth =firebase.auth()
+const db = getDatabase(app);
 
-export {auth};
+const auth =firebase.auth();
+
+export {db,auth};

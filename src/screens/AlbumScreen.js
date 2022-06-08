@@ -67,9 +67,8 @@ const AlbumScreen = ({ navigation }) => {
           navigation={navigation} />
 
       </View>
-      <View style={styles.square}>
+     
 
-      </View>
       </>
 
   );

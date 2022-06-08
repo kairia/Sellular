@@ -13,13 +13,13 @@ const App = () => {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
-        <SafeAreaProvider>
+        {/* <SafeAreaProvider> */}
       {/* <SafeAreaView style={{ flex: 1 }}> */}
         <NativeBaseProvider>
           <Navigation />
         </NativeBaseProvider>
       {/* </SafeAreaView> */}
-    </SafeAreaProvider>
+    {/* </SafeAreaProvider> */}
       </PersistGate>
     </Provider>
     

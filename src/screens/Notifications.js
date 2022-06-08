@@ -3,6 +3,7 @@ import { Platform, Text, Image, StyleSheet,View } from "react-native";
 import { Box,useColorMode } from "native-base";
 import { Svg, Path } from "react-native-svg";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import animatedMessages from '../screens/AnimatedMessages.js';
 
 import { useFonts } from 'expo-font';
 
@@ -54,7 +55,6 @@ return(
 
         
       </View>
-      
       
       
       </>

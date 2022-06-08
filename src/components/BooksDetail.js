@@ -1,9 +1,16 @@
-import React from "react";
+import React,{ useState,useEffect } from "react";
 import { ImageBackground,StyleSheet,  View} from "react-native";
 import {NativeBaseProvider,Box, Text,Heading,HStack,Pressable, Image,useColorMode} from "native-base";
 import image from "../images/BG_Nightsky.jpg";
 import MaskedView from '@react-native-masked-view/masked-view';
-
+import { db,firebase } from '../../firebase';
+import {
+  ref,
+  onValue,
+  push,
+  update,
+  remove
+} from 'firebase/database';
 
 var ad=[
   require('../images/BluePhone.jpg'),
@@ -18,6 +25,16 @@ var st=[
   require('../images/icon_star_filled.png'),
 ];
 const BooksDetail =({ album, navigation}) => {
+  const [todos, setTodos] = useState([]);
+  const [presentTodo, setPresentTodo] = useState('');
+
+  useEffect(() => {
+    return onValue(ref(db, '/0'), querySnapShot => {
+      let data = querySnapShot.val() || {};
+      let todoItems = {...data};
+      setTodos(todoItems);
+    });
+  }, []);
   //  let { album } = props;
    const { colorMode } = useColorMode();
    return (

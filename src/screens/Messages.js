@@ -43,7 +43,7 @@ return(
           alignSelf:'center',
           marginLeft:'5%',
           marginTop:'6%'
-        }}>Inbox</Text>
+        }}>Notify</Text>
       <MaterialCommunityIcons
         color={colorMode == "light" ? '#000' : '#fff'}
         name={'menu'}

@@ -1,10 +1,15 @@
 import React from "react";
 import { View } from "native-base";
 import { MotiView } from "moti";
+import { Image } from 'react-native';
 
+var sellular = require("../images/Sellular.png");
 
 
 const LoadingIndicator = ( {size}: { size:number} ) =>{
+
+    
+
 
  return(
     
@@ -50,9 +55,9 @@ export default function App(){
     return(
       <View 
       style={{position:'absolute',width:'100%',height:'100%',alignItems:'center',justifyContent:'center',backgroundColor:'#3E5EB0'}}>
-
+      
     <LoadingIndicator size={100}/>
-
+    <Image source={sellular} style={{ position:'absolute',top:'60%'}}/>
 
  </View>
   

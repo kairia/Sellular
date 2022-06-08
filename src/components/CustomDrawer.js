@@ -66,7 +66,7 @@ const CustomDrawer = (props) => {
              onColor="#004A85"
              offColor="#B2C8FF"
              label="dark"
-             labelStyle={{ color: colorMode == "light"?"white":"#121212",fontSize:24, fontWeight: "900",marginRight:"25%",fontFamily:'Alegreya Sans SC' }}
+             labelStyle={{ color: colorMode == "light"?"white":"#121212",fontSize:26, fontWeight: "500",marginRight:"25%",fontFamily:'Alegreya Sans SC' }}
              onToggle={toggleColorMode}
              />
              {/* <Switch

@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { ImageBackground, Text, FlatList, SectionList, StyleSheet, View,Image,ScrollView } from "react-native";
 import { Box, Center,useColorMode } from "native-base";
 import {NativeBaseProvider,Heading} from 'native-base';
 import BooksDetail from "./BooksDetail";
 import sections from "../json/album_section.json";
 import FlatGridTest from '../screens/FlatGridTest';
-
+import { db,firebase } from '../../firebase';
+import {
+  ref,
+  onValue,
+  push,
+  update,
+  remove
+} from 'firebase/database';
 
 import MaskedView from '@react-native-masked-view/masked-view';
 import image from "../images/BG_Daysky.jpg";
@@ -18,10 +25,19 @@ var bg=[
 
 ]
 
+
+
+
+
 import { useFonts } from 'expo-font';
 var fontsLoaded = true;
 
 const Albumlist = (navigation) => {
+  
+
+
+
+ 
   const { colorMode } = useColorMode();
   state = {
     fontsLoaded: false,
@@ -42,7 +58,7 @@ const Albumlist = (navigation) => {
       <Box style={{flexDirection:"row",justifyContent:'space-between'}} >
         <Text style={[styles.sectionHeader,{color:colorMode == "light"?"#121212":"#fff"}]} >{section.title}</Text>
         <Box style={{justifyContent:'center',marginRight:28}}>
-        <Text style={{alignSelf: "center"}} >more</Text>
+        <Text style={{alignSelf: "center"}} ></Text>
         </Box>
       </Box>
       
@@ -75,7 +91,7 @@ const Albumlist = (navigation) => {
 
       </MaskedView>
       
-      <Box style={{flexDirection:"row"}} ><Text style={[styles.sectionHeader,{marginBottom:"-2%",color:colorMode == "light"?"#121212":"#fff"}]} >Explore</Text><Text style={{marginLeft:"60%",alignSelf: "center"}} ></Text></Box>  
+      <Box style={{flexDirection:"row"}} ><Text style={[styles.sectionHeader,{marginBottom:"-2%",color:colorMode == "light"?"#121212":"#fff"}]} >Latest</Text><Text style={{marginLeft:"60%",alignSelf: "center"}} ></Text></Box>  
       <MaskedView 
       style={{ flex: 1, flexDirection: 'row', height: '100%'}}
       maskElement={
@@ -101,12 +117,48 @@ const Albumlist = (navigation) => {
       
     </Box>
   );
+  var sections2=[];
+  var [secs, setSecs] = useState([]);
   const renderItem = ({ item, section }) => {
+    
+     
+
+
+
+    useEffect(() => {
+      
+      onValue(ref(db, '/0/data'), querySnapShot => {
+        let data = querySnapShot.val() || {};
+        let todoItems = {...data};
+        setSecs(todoItems);
+        const newCells =[];
+        
+        querySnapShot.forEach(doc => {
+          sections2.push({
+            artist:doc.val().artist,
+            descriptions:doc.val().descriptions,
+            owner:doc.val().owner,
+            ownerID:doc.val().ownerID,
+            price:doc.val().price,
+            star:doc.val().star,
+            title:doc.val().title,
+            url:doc.val().url,
+          });
+          setSecs(newCells)
+          
+      });
+     
+      
+      // console.log(sections2)
+       
+      });
+    }, []);
+
+// console.log(sections2)
     if (section.horizontal) {
       return null;
     }
   };
-
   return (
     <><SectionList
       sections={sections}
@@ -116,7 +168,6 @@ const Albumlist = (navigation) => {
       renderSectionHeader={renderSectionHeader}
       renderItem={renderItem}
       keyExtractor={item => item.title} />
-      
       </>
   );
 };

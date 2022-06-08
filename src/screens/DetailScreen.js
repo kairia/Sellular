@@ -55,13 +55,12 @@ const DetailScreen = ({ route }) => {
 
   return (
     <Box bg={colorMode == "light"?"#fff":"#050B21"} height={"100%"} > 
-        <View bg="white" width={"80%"} height={"5%"} style={{}}></View>
         <Box width={"100%"} style={{aspectRatio:1,overflow:'hidden'}} >
           <ImageBackground
             source={ad[image]}
             alt='bookImage'
             style={{flex:1,justifyContent:"flex-start",  resizeMode: 'cover',overflow:'hidden'}}
-            imageStyle={{borderTopLeftRadius:bannerBorderRadius,borderBottomRightRadius:bannerBorderRadius}}
+            imageStyle={{borderBottomRightRadius:bannerBorderRadius}}
           >
           
           <Box bg="#fff" width={"3%"}height={"3%"} style={{position:"absolute",bottom:"5%",alignSelf:"center",borderRadius:50,opacity:0.8}}></Box>
@@ -110,11 +109,10 @@ const DetailScreen = ({ route }) => {
             
              <Text textAlign="right" fontWeight={"700"}>Price</Text>
              <Text textAlign="right" color={colorMode == "light"?"#121212":'#fff'} fontWeight={"700"} fontSize="24px">{"$"+price}</Text>
-            </View>
             
-
-             
-             {Platform.OS == 'ios' ?
+            
+            </View>
+            {Platform.OS == 'ios' ?
              
              <Button 
              fontSize="14px" 
@@ -142,6 +140,9 @@ const DetailScreen = ({ route }) => {
 
 
              </TouchableOpacity>
+
+             
+             
               
              
             
