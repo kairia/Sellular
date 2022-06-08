@@ -1,10 +1,14 @@
-import React from 'react';
+import React,{ useState} from 'react';
 import { Linking , StyleSheet, View, Platform , ImageBackground ,TouchableOpacity } from 'react-native';
 import { Center, ScrollView, Box, AspectRatio, Text, Heading, Image, Button, HStack,useColorMode } from "native-base";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
 
 import  {LinearGradient}  from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
+
+import { connect } from 'react-redux';
+import { addToCart } from '../state/shoppingActions';
 
 var fontsLoaded = true;
 var bannerBorderRadius = 40;
@@ -21,8 +25,10 @@ var ad=[
   require('../images/Tesla.jpg'),
 ];
 
-const DetailScreen = ({ route }) => {
+const DetailScreen = ({ route,addToCart }) => {
+  const navigation = useNavigation();
   const { colorMode } = useColorMode();
+  const [islike,setIslike]= useState(false);
 
   state = {
     fontsLoaded: false,
@@ -46,11 +52,12 @@ const DetailScreen = ({ route }) => {
     star,
     url,
     image,
-    descriptions
+    descriptions,
+    index
   } = route.params;
 
   var a=Number(star[0])+Number(star[1])+Number(star[2])+Number(star[3])+Number(star[4]);
-  var b="Purchase";
+  var b="Add to Cart";
   //colors={['#fff','rgba(255,255,255,0.5)','rgba(255,255,255,0)']}
 
   return (
@@ -88,10 +95,12 @@ const DetailScreen = ({ route }) => {
             <Text textAlign="left" fontSize="24px" fontWeight="700" color={colorMode == "light"?'#121212':'#fff'} fontFamily='Nanum Gothic'>{title}</Text>
             {/* <Image source={bg2} alt="xx" style={{height: 48,width: 48,borderRadius:50}}/> */}
             <MaterialCommunityIcons
-            color={colorMode == "light"?'#000':'#fff'}
-            name={'heart-outline'}
-            size={24}
-            onPress={() => null}
+            color={colorMode == "light"?'#ff828f':'#fff'}
+            name={islike == false?'heart-outline':'cards-heart'}
+            size={30}
+            onPress={
+              () => setIslike(!islike)
+            }
             style={{ alignSelf:"center" }} />
             </View>
             
@@ -117,7 +126,7 @@ const DetailScreen = ({ route }) => {
              <Button 
              fontSize="14px" 
              color={"#fff"} 
-             onPress={() => alert("In your cart")} 
+             onPress={() => {alert("Added");addToCart(index)}} 
              width="50%" 
              height="18%"
              style={{marginLeft:"50%",marginTop:"5%",borderRadius:10}}>{b}</Button>
@@ -125,7 +134,7 @@ const DetailScreen = ({ route }) => {
              :
              
              <TouchableOpacity 
-             onPress={() => alert("In your cart")} style={{marginLeft:"50%",marginTop:"5%"}}>
+             onPress={() => {alert("Added");addToCart(index)}} style={{marginLeft:"50%",marginTop:"5%"}}>
              
              <LinearGradient 
               width="100%"
@@ -140,6 +149,7 @@ const DetailScreen = ({ route }) => {
 
 
              </TouchableOpacity>
+             
 
              
              
@@ -163,4 +173,10 @@ const DetailScreen = ({ route }) => {
   );
 }
 
-export default DetailScreen;
+const mapDispatchToProps = (dispatch) =>{
+  return{
+    addToCart:(id)=> dispatch(addToCart(id))
+  }
+}
+
+export default connect(null,mapDispatchToProps)(DetailScreen);
