@@ -1,8 +1,8 @@
 export default {
   COLORS: {
     DEFAULT: '#172B4D',
-    PRIMARY: '#5E72E4',
-    SECONDARY: '#F7FAFC',
+    PRIMARY: '#3E5EB0',
+    SECONDARY: '#8A96FF',
     LABEL: '#FE2472',
     INFO: '#11CDEF',
     ERROR: '#F5365C',

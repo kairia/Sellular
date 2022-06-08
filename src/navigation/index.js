@@ -159,16 +159,12 @@ const Tabs = () => {
         name="HomeStack" 
         component={HStack}
         options={{
-          unmountOnBlur:true,
           headerShown: false,
           title: "",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home-variant" color={color} size={28} />
           ),
         }}
-        listeners={({ navigation }) => ({
-          blur: () => navigation.setParams({ screen: undefined }),
-        })}
       />
       <Tab.Screen 
         name="WList" 
@@ -637,10 +633,11 @@ const Regi = ({navigation}) => {
                         value={newUsername}
                         placeholder="User Name(optional)"
                         iconContent={
-                          <Icon
+                          <MaterialCommunityIcons
                             size={16}
                             color={argonTheme.COLORS.ICON}
-                            name="hat-3"
+                            name="face-man"
+
                             family="ArgonExtra"
                             style={styles.inputIcons}
                           />
@@ -654,10 +651,10 @@ const Regi = ({navigation}) => {
                         value={email}
                         placeholder="Email"
                         iconContent={
-                          <Icon
+                          <MaterialCommunityIcons
                             size={16}
                             color={argonTheme.COLORS.ICON}
-                            name="hat-3"
+                            name="email-outline"
                             family="ArgonExtra"
                             style={styles.inputIcons}
                           />
@@ -726,7 +723,7 @@ const Regi = ({navigation}) => {
                       </Button> */}
                     </Block>
                     <Block middle>
-                      <Button onPress={handleLogin} color="primary" style={styles.createButton}>
+                      <Button onPress={handleLogin} color="secondary" style={styles.createButton}>
                         <Text bold size={16} color={argonTheme.COLORS.WHITE}>
                          SignIn
                         </Text>
@@ -774,27 +771,27 @@ const Onboarding = ({navigation}) => {
         <Block flex space="around" style={{ zIndex: 2 }}>
           <Block style={styles.title}>
             <Block>
-              <Text color="white" size={60}>
-                Sellular
+              <Text  color="white" size={45} style={{fontFamily:fontsLoaded?'Alegreya Sans SC':'Roboto',}}>
+                Cellular
               </Text>
             </Block>
             <Block>
-              <Text color="white" size={60}>
+              <Text color="white" size={45} style={{fontFamily:fontsLoaded?'Alegreya Sans SC':'Roboto',}}>
                 Network
               </Text>
             </Block>
             <Block style={styles.subTitle}>
               <Text color="white" size={16}>
-                Fully coded React Native components.
+                Unlimited posibilities, in your pocket.
               </Text>
             </Block>
           </Block>
           <Block center>
             <Button
               style={styles.button}
-              color={argonTheme.COLORS.SECONDARY}
+              color={"secondary"}
               onPress={() => navigation.navigate('Login')}
-              textStyle={{ color: argonTheme.COLORS.BLACK }}
+              textStyle={{ color: 'white',fontWeight:'700' }}
             >
               Get Started
             </Button>
@@ -894,8 +891,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0
   },
   logo: {
-    width: 200,
-    height: 60,
+    width: 250,
+    height: 75,
     zIndex: 2,
     position: 'relative',
     marginTop: '-50%'

@@ -4,6 +4,7 @@ import { MotiView } from "moti";
 import { Image } from 'react-native';
 
 var sellular = require("../images/Sellular.png");
+var orbs = require("../images/Orbs.png");
 
 
 const LoadingIndicator = ( {size}: { size:number} ) =>{
@@ -18,7 +19,7 @@ from={{
     width:size,
     height:size,
     borderRadius:size/6,
-    borderWidth:2,
+    borderWidth:4,
 }}
 animate={{
 width:size+10,
@@ -37,7 +38,7 @@ borderWidth:size/10,
       width:size,
       height:size,
       borderRadius: size / 6,
-      borderWidth:size/10,
+      borderWidth:size/8,
       borderColor:"#fff",
   }}>
 
@@ -55,9 +56,10 @@ export default function App(){
     return(
       <View 
       style={{position:'absolute',width:'100%',height:'100%',alignItems:'center',justifyContent:'center',backgroundColor:'#3E5EB0'}}>
-      
+    
     <LoadingIndicator size={100}/>
     <Image source={sellular} style={{ position:'absolute',top:'60%'}}/>
+    <Image source={orbs} style={{ width:90,height:90,position:'absolute',top:'44%',opacity:0.5}}/> 
 
  </View>
   
